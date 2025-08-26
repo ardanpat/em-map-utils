@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="aefb932f-7373-4381-a1c0-9bccc34f1464" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/em-map-utils.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/em-map-utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/em-map-utils/demos/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/em-map-utils/demos/demo_farm_function.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/em-map-utils/demos/demo_filled_cuboid.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/em-map-utils/demos/demo_filled_cylinder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/em-map-utils/demos/demo_filled_sphere.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/em-map-utils/demos/demo_map_covariance.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/em-map-utils/demos/demo_map_line_projections.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/em-map-utils/demos/demo_map_rotate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/em-map-utils/demos/ortho_surface_views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/em-map-utils/download_emdb.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/em-map-utils/farm_function.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/em-map-utils/filled_cuboid.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/em-map-utils/filled_cylinder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/em-map-utils/filled_sphere.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/em-map-utils/map_covariance.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/em-map-utils/map_line_projections.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/em-map-utils/map_rotate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/em-map-utils/map_threshold.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/em-map-utils/structure_size_and_shape.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/em-map-utils/util.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="30UqvqyJe7UXnIDYtrtUdB94Vkz" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.Debug.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.demo_filled_sphere.executor&quot;: &quot;Run&quot;,
+    &quot;Python.filled_sphere.executor&quot;: &quot;Run&quot;,
+    &quot;Python.map_covariance.executor&quot;: &quot;Run&quot;,
+    &quot;Python.map_threshold.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="Debug" type="PythonConfigurationType" factoryName="Python">
+      <module name="em-map-utils" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.9 (em-map-utils)" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="em-map-utils.map_threshold" />
+      <option name="PARAMETERS" value="$USER_HOME$/Scratch/emd_11828.map.gz $USER_HOME$/Scratch/emd_11828_threshold1.map.gz -p" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="true" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-PY-252.23892.515" />
+        <option value="bundled-python-sdk-7e47963ff851-f0eec537fc84-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.23892.515" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="aefb932f-7373-4381-a1c0-9bccc34f1464" name="Changes" comment="" />
+      <created>1753692732278</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1753692732278</updated>
+      <workItem from="1753692733285" duration="118727000" />
+      <workItem from="1754551758230" duration="26828000" />
+      <workItem from="1756110470437" duration="22232000" />
+      <workItem from="1756139479790" duration="6849000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/em-map-utils/map_covariance.py</url>
+          <line>147</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/em_map_utils$map_threshold.coverage" NAME="map_threshold Coverage Results" MODIFIED="1754553880548" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/em-map-utils" />
+    <SUITE FILE_PATH="coverage/em_map_utils$Debug.coverage" NAME="Debug Coverage Results" MODIFIED="1754554521579" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/em_map_utils$demo_filled_sphere.coverage" NAME="demo_filled_sphere Coverage Results" MODIFIED="1753870281899" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/em-map-utils/demos" />
+    <SUITE FILE_PATH="coverage/em_map_utils$map_covariance.coverage" NAME="map_covariance Coverage Results" MODIFIED="1753986222888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/em-map-utils" />
+    <SUITE FILE_PATH="coverage/em_map_utils$filled_sphere.coverage" NAME="filled_sphere Coverage Results" MODIFIED="1753709119519" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/em-map-utils" />
+  </component>
+</project>
