@@ -40,7 +40,7 @@ if __name__ == '__main__':
     parser.add_argument('-r', '--resume', action='store_true',
                         help='Continue from previous run.')
     parser.add_argument('-t', '--retry', action='store_true',
-                        help='Retry items that failed. Only works with the --retry flag.')
+                        help='Retry items that failed. Only works with the --resume flag.')
     parser.add_argument('-i', '--ignore_new_values', action='store_true',
                         help='Just resume from old database and do not generate new values. Must be used with --resume flag.')
     args = parser.parse_args()

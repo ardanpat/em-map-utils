@@ -4,34 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aefb932f-7373-4381-a1c0-9bccc34f1464" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/em-map-utils.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/em-map-utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/em-map-utils/demos/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/em-map-utils/demos/demo_farm_function.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/em-map-utils/demos/demo_filled_cuboid.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/em-map-utils/demos/demo_filled_cylinder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/em-map-utils/demos/demo_filled_sphere.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/em-map-utils/demos/demo_map_covariance.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/em-map-utils/demos/demo_map_line_projections.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/em-map-utils/demos/demo_map_rotate.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/em-map-utils/demos/ortho_surface_views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/em-map-utils/download_emdb.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/em-map-utils/farm_function.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/em-map-utils/filled_cuboid.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/em-map-utils/filled_cylinder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/em-map-utils/filled_sphere.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/em-map-utils/map_covariance.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/em-map-utils/map_line_projections.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/em-map-utils/map_rotate.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/em-map-utils/map_threshold.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/em-map-utils/structure_size_and_shape.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/em-map-utils/util.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    <list default="true" id="aefb932f-7373-4381-a1c0-9bccc34f1464" name="Changes" comment="Initial commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/em-map-utils/demos/demo_farm_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/em-map-utils/demos/demo_farm_function.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/em-map-utils/download_emdb.py" beforeDir="false" afterPath="$PROJECT_DIR$/em-map-utils/download_emdb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/em-map-utils/farm_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/em-map-utils/farm_function.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +26,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ardanpat&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ardanpat/em-map-utils.git&quot;,
+    &quot;accountId&quot;: &quot;fe9dbefd-c8eb-49ad-95bf-4d2c98380dd4&quot;
+  }
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
@@ -125,12 +115,25 @@
       <workItem from="1753692733285" duration="118727000" />
       <workItem from="1754551758230" duration="26828000" />
       <workItem from="1756110470437" duration="22232000" />
-      <workItem from="1756139479790" duration="6849000" />
+      <workItem from="1756139479790" duration="40938000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial commit">
+      <option name="closed" value="true" />
+      <created>1756203773308</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1756203773308</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

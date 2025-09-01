@@ -30,7 +30,7 @@ class FarmFunction:
 
     max_cpu = mp.cpu_count()
 
-    def __init__(self, f, values, args, kwargs,
+    def __init__(self, f, values, args=[], kwargs={},
                  num_workers=2,
                  max_tries=2,
                  monitoring_interval=5,
