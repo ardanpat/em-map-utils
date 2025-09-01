@@ -8,7 +8,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name='em-map-utils',
-    version='0.0.0',
+    version='0.0.1',
     packages=['em-map-utils', 'em-map-utils.demos'],
     url='https://github.com/ardanpat/em-map-utils.git',
     license='Apache License 2.0',
