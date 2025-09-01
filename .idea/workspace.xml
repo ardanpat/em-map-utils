@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aefb932f-7373-4381-a1c0-9bccc34f1464" name="Changes" comment="Initial commit">
+    <list default="true" id="aefb932f-7373-4381-a1c0-9bccc34f1464" name="Changes" comment="Tested downloading multiple maps in download_emdb.py using farm_function.py functionality.">
+      <change afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/em-map-utils/demos/demo_farm_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/em-map-utils/demos/demo_farm_function.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/em-map-utils/download_emdb.py" beforeDir="false" afterPath="$PROJECT_DIR$/em-map-utils/download_emdb.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/em-map-utils/farm_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/em-map-utils/farm_function.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +17,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="Setup Script" />
       </list>
     </option>
   </component>
@@ -115,7 +113,7 @@
       <workItem from="1753692733285" duration="118727000" />
       <workItem from="1754551758230" duration="26828000" />
       <workItem from="1756110470437" duration="22232000" />
-      <workItem from="1756139479790" duration="40938000" />
+      <workItem from="1756139479790" duration="43007000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -125,7 +123,15 @@
       <option name="project" value="LOCAL" />
       <updated>1756203773308</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Tested downloading multiple maps in download_emdb.py using farm_function.py functionality.">
+      <option name="closed" value="true" />
+      <created>1756713522479</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1756713522479</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,7 +139,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="Tested downloading multiple maps in download_emdb.py using farm_function.py functionality." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tested downloading multiple maps in download_emdb.py using farm_function.py functionality." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
