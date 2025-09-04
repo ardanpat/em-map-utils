@@ -7,8 +7,8 @@ Date: 07/08/2025
 Description: 
     Threshold and align map with a box by determining the principal axes
     of the structure and then aligning the principal axes to the box.
-    Estimate the size of the molecule using the widths of the 3
-    orthogonal line projections. Estimate the aspericity of the
+    Estimate the size of the molecule using the lengths of the 3
+    orthogonal line projections. Estimate the asphericity of the
     structure as a shape measure.
 """
 
@@ -17,14 +17,38 @@ import csv
 import logging
 import matplotlib.pyplot as plt
 import mrcfile
+import multiprocessing as mp
 import numpy as np
 from pathlib import Path
+import re
 from scipy.special import elliprg
+from .farm_function import FarmFunction
 from .map_covariance import MapCovariance as MC
 from .map_line_projections import MapLineProjections as MLP
 from .map_threshold import  threshold_map
 
 logger = logging.getLogger(__name__)
+
+map_name_pattern = re.compile(r"([^\ ]+)(\.map)(\.gz)?", re.IGNORECASE)
+
+def read_map_list_from(list_file, list_dir=None, file_dir=None):
+
+    map_list = []
+
+    if list_dir is not None:
+        list_file = Path(list_dir) / list_file
+
+    with open(list_file, 'r') as file:
+        for line in file:
+            match = map_name_pattern.match(line.strip())
+            if match:
+                file_name = match.group(0)
+                if file_dir is not None:
+                    file_name = Path(file_dir) / file_name
+                map_list.append(file_name.absolute().as_posix())
+            else:
+                logger.warning(f"Ignoring line. Could not parse map file name from text: {line}")
+    return map_list
 
 def asphericity_coefficient(a, b, c):
     """
@@ -66,7 +90,7 @@ def structure_size_and_shape(entry_file, aligned_file=None, plot_profile=True, c
         equivalent average), and the asphericity.
     """
 
-    phys_width = 0.0
+    phys_widths = 0.0
     cube_root_width = 0.0
     asph = 0.0
 
@@ -86,15 +110,13 @@ def structure_size_and_shape(entry_file, aligned_file=None, plot_profile=True, c
 
         # Get 1D profile lengths
         prof = MLP(aligned_map)
-        phys_width = prof.cum_prof_width * scale_vec
-        cube_root_width = np.pow(np.prod(phys_width), 1 / 3)
+        # Physical widths in descending order
+        phys_widths = np.sort(prof.cum_prof_width * scale_vec)[::-1]
+        cube_root_width = np.pow(np.prod(phys_widths), 1 / 3)
         asph = asphericity_coefficient(prof.cum_prof_width[0], prof.cum_prof_width[1], prof.cum_prof_width[2])
 
-        print(prof)
+        # print(prof)
         # print(f"Scaled reciprocal e width: {prof.rec_e_width * scale_vec}")
-        print(f"Scaled cumulative profile width: {phys_width}")
-        print(f"Cube root width: {cube_root_width}")
-        print(f"Asphericity coefficient: {asph}")
 
         # Save measurements to CSV file
         if csv_file:
@@ -107,9 +129,9 @@ def structure_size_and_shape(entry_file, aligned_file=None, plot_profile=True, c
                     writer.writeheader()
 
                 writer.writerow({fieldnames[0]: entry_file,
-                                 fieldnames[1]: phys_width[0],
-                                 fieldnames[2]: phys_width[1],
-                                 fieldnames[3]: phys_width[2],
+                                 fieldnames[1]: phys_widths[0],
+                                 fieldnames[2]: phys_widths[1],
+                                 fieldnames[3]: phys_widths[2],
                                  fieldnames[4]: cube_root_width,
                                  fieldnames[5]: asph})
                 f.close()
@@ -133,20 +155,76 @@ def structure_size_and_shape(entry_file, aligned_file=None, plot_profile=True, c
                 mrc_out.set_extended_header(mrc.extended_header)
             mrc_out.close()
 
-    return phys_width, cube_root_width, asph
+    return True, { 'width_a': phys_widths[0],
+                   'width_b': phys_widths[1],
+                   'width_c': phys_widths[2],
+                   'cube_root_width': cube_root_width,
+                   'asphericity': asph }
 
-if __name__ == "__main__":
+def main():
+    mp.set_start_method("fork", force=True)
+    mp.freeze_support()
+
     parser = argparse.ArgumentParser(
         description='Determine the size and shape of structure.')
-    parser.add_argument('infile', metavar='FILE', type=str, help="Input map.")
+    parser.add_argument('infile', metavar='FILE', type=str, help="Input map or a text file containing a list of maps.")
+    parser.add_argument('-l', '--list', action='store_true', help="Input file is assumed to be a list of maps.")
+    parser.add_argument('-d', '--dir', metavar='DIR', type=str, help="Path to prefix to the maps.")
+    parser.add_argument('--list_dir', metavar='DIR', type=str, help="Path to prefix to the name of the file containing a list of maps. Will also be used for output files during multiprocessing.")
     parser.add_argument('-c', '--csv', metavar='FILE', type=str, help="Optional csv file to output measurements.")
     parser.add_argument('-a', '--align_file', metavar='FILE', type=str, help="Optional output of the aligned map.")
-    parser.add_argument('-p', '--plot', action='store_true', help="Plot histogram and line profiles.")
-    parser.add_argument("-m", "--mode", choices=['a','w'], default='a', help="CSV output mode.")
+    parser.add_argument('-p', '--plot', action='store_true', help="Plot histogram and line profiles. Ignored if input is a list of maps.")
+    parser.add_argument("-m", "--mode", choices=['a', 'w'], default='a', help="CSV output mode.")
+    parser.add_argument('-w', '--num_workers', metavar='VAL', type=int, default=5,
+                        help='Number of workers to process maps. Only relevant with -l option.')
+    parser.add_argument('-t', '--max_tries', metavar='VAL', type=int, default=2,
+                        help='Number of attempts to try and process map. Only relevant with -l option.')
+    parser.add_argument('--monitoring_interval', metavar='VAL', type=int, default=5,
+                        help='Interval in seconds between each worker check. Only relevant with -l option.')
+    parser.add_argument('--out_stem', metavar='FILE', type=str, default='map_size_and_shape',
+                        help='File stem name excluding suffix to use for output json and database. Will be prefixed with list_dir. Only relevant with -l option.')
+    parser.add_argument('--resume', action='store_true',
+                        help='Do not overwrite existing files. Instead try and resume the processing using the database.')
+    parser.add_argument('--retry', action='store_true',
+                        help='Retry failed items when using the --resume flag. Only relevant with -l option.')
     args = parser.parse_args()
 
-    structure_size_and_shape(entry_file = args.infile,
-                             aligned_file = args.align_file,
-                             plot_profile = args.plot,
-                             csv_file = args.csv,
-                             csv_mode = args.mode)
+    if not args.list:
+        if args.dir:
+            args.infile = Path(args.list_dir) / args.infile
+            if args.align_file:
+                args.align_file = Path(args.list_dir) / args.align_file
+        status, res = structure_size_and_shape(entry_file=args.infile,
+                                               aligned_file=args.align_file,
+                                               plot_profile=args.plot,
+                                               csv_file=args.csv,
+                                               csv_mode=args.mode)
+        print(f"Principal axes widths: {res['width_a']}, {res['width_b']}, {res['width_c']}")
+        print(f"Cube root width: {res['cube_root_width']}")
+        print(f"Asphericity coefficient: {res['asphericity']}")
+
+    else:
+
+        if args.resume:
+            map_list = []
+        else:
+            map_list = read_map_list_from(args.infile,
+                                          list_dir=args.list_dir,
+                                          file_dir=args.dir)
+
+        file_root = Path(args.list_dir) / args.out_stem
+        print(map_list)
+
+        ff = FarmFunction(structure_size_and_shape, map_list,
+                          kwargs = { 'aligned_file': None,
+                                     'plot_profile': False,
+                                     'csv_file': None },
+                          num_workers=args.num_workers,
+                          max_tries=args.max_tries,
+                          monitoring_interval=args.monitoring_interval,
+                          file_root=file_root,
+                          resume=args.resume,
+                          retry=args.retry)
+
+if __name__ == "__main__":
+   main()
