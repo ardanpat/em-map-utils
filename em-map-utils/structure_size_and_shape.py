@@ -191,9 +191,9 @@ def main():
 
     if not args.list:
         if args.dir:
-            args.infile = Path(args.list_dir) / args.infile
+            args.infile = Path(args.dir) / args.infile
             if args.align_file:
-                args.align_file = Path(args.list_dir) / args.align_file
+                args.align_file = Path(args.dir) / args.align_file
         status, res = structure_size_and_shape(entry_file=args.infile,
                                                aligned_file=args.align_file,
                                                plot_profile=args.plot,
