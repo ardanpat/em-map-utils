@@ -89,6 +89,7 @@ class MapCovariance:
     def align_map_principal_axes(cls,
                                  map_grid,
                                  axes=None,
+                                 cubify_if_needed=False,
                                  dtype=np.float32):
         """
         Determine the principal axes that corresponds to a map grid and rotate the map
@@ -100,6 +101,7 @@ class MapCovariance:
 
         :param map_grid: Map grid to be aligned.
         :param axes: Axis vectors to use as a reference when aligning principal axes. If None, the closest right-handed system to the eigenvectors will be used.
+        :param cubify_if_needed: If the map is non-cubic, pad it to the max dimension prior to any rotation.
         :param dtype: Data type of the output arrays.
         :return: Aligned map grid, applied rotation, eigenvalues, and eigenvectors.
         """
@@ -133,7 +135,7 @@ class MapCovariance:
         rot1, rssd1 = R.align_vectors(axes.T, map1_cov_info.eigenvectors.T, weights=[np.inf, 1, 1])
 
         # Apply back rotation on map1 and calculate the eigenvectors/values
-        map2 = map_rotate(map_grid, rot1, initial_translation=map1_trans)
+        map2 = map_rotate(map_grid, rot1, initial_translation=map1_trans, cubify_if_needed=cubify_if_needed)
 
         map2_cov_info = cls(map2)
         # map2_cov_matrix, map2_centre_coos, map2_eigenvalues, map2_eigenvectors = map_covariance_matrix(map2)
@@ -146,7 +148,7 @@ class MapCovariance:
         return map2, rot1, map2_cov_info
 
     @classmethod
-    def map_rotate_forward_backward(cls, map_grid, rotation):
+    def map_rotate_forward_backward(cls, map_grid, rotation, cubify_if_needed=False):
         """
         Rotate map by the given rotation, estimate the rotation using
         the map's principal axes. Rotate the map back so that the map
@@ -156,6 +158,7 @@ class MapCovariance:
 
         :param map_grid: Input map.
         :param rotation: SciPy rotation to apply to input map.
+        :param cubify_if_needed: If map is cubic, pad it to the max dimension prior to any rotation.
         :return: Tuple with rotated map, back-rotated map and back
             rotation.
         """
@@ -165,10 +168,10 @@ class MapCovariance:
         logger.debug(map1_cov_info)
 
         # Rotate map1
-        rot_map = map_rotate(map_grid, rotation)
+        rot_map = map_rotate(map_grid, rotation, cubify_if_needed=cubify_if_needed)
 
         # Align map
-        back_rot_map, rot2, back_rot_map_cov_info = cls.align_map_principal_axes(rot_map, map1_cov_info.eigenvectors)
+        back_rot_map, rot2, back_rot_map_cov_info = cls.align_map_principal_axes(rot_map, map1_cov_info.eigenvectors, cubify_if_needed=cubify_if_needed)
 
         inv_rot1_matrix = rotation.inv().as_matrix()
         inv_rot2_matrix = rot2.as_matrix()

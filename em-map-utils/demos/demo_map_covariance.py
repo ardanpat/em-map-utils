@@ -26,7 +26,7 @@ from .ortho_surface_views import ortho_surface_views
 
 logger = logging.getLogger(__name__)
 
-def plot_back_rotated_cuboid(in_file, lengths, box_size, rotation, out_file):
+def plot_back_rotated_cuboid(in_file, lengths, box_size, rotation, cubify, out_file):
     """
     A cuboid (or an optionally specified input map) is first rotated
     by a known angle. The principal axes of the rotated map are used to
@@ -38,6 +38,7 @@ def plot_back_rotated_cuboid(in_file, lengths, box_size, rotation, out_file):
     :param lengths: Lengths of the cuboid.
     :param box_size: Size of the 3D volume box.
     :param rotation: Euler angle of rotation in an intrinsic frame following Z-Y'-Z" convention.
+    :param cubify: If the map is not cubic, pad it to the largest dimension before rotation operations.
     :param out_file: Optional file to save the figure to.
     :return: No return value.
     """
@@ -55,7 +56,7 @@ def plot_back_rotated_cuboid(in_file, lengths, box_size, rotation, out_file):
     # Note: In scipy the axis order is reversed (i,j,k) map to (x,y,z)
     rot = R.from_euler('XYX', rotation, degrees=True)
 
-    rot_map, back_rot_map, back_rot = MC.map_rotate_forward_backward(map_grid, rot)
+    rot_map, back_rot_map, back_rot = MC.map_rotate_forward_backward(map_grid, rot, cubify_if_needed = cubify)
 
     fig2, ax2 = ortho_surface_views(back_rot_map, fig_title="Back-rotated map")
 
@@ -77,6 +78,8 @@ if __name__ == '__main__':
     parser.add_argument('-b', '--box_size', metavar='XXX', type=int, nargs=3, default=[100, 100, 100],
                         help='Three lengths of the sides (i,j,k) of the box in voxels.')
     parser.add_argument('-r', '--rotation', metavar='RRR', type=float, nargs=3, default=[20, 0,0], help="Relative Euler angle in degrees using Z-Y\'-Z\" order and a right handed convention.")
+    parser.add_argument("-c", '--cubify', action='store_true', help="If a map is not cubic, pad it to the largest dimension before rotating.")
+
     args = parser.parse_args()
 
-    plot_back_rotated_cuboid(args.infile, args.lengths, args.box_size, args.rotation, args.outfile)
+    plot_back_rotated_cuboid(args.infile, args.lengths, args.box_size, args.rotation, args.cubify, args.outfile)
