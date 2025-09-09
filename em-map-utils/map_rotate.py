@@ -42,7 +42,6 @@ def map_rotate(map_grid,
     rotation_centre = np.asarray(rotation_centre) if rotation_centre is not None else  (np.asarray(np.shape(map_grid)) - 1.0) / 2.0
 
     inp_map_shape = np.asarray(np.shape(map_grid))
-    # inp_map_size = np.size(map_grid)
 
     # Check if the output map will have different dimensions to the input map
     if not ((inp_map_shape == inp_map_shape[0]).all()) and cubify_if_needed:
@@ -57,23 +56,17 @@ def map_rotate(map_grid,
     out_grid_ranges = [range(x) for x in out_map_shape]
     out_coos_grid = np.mgrid[out_grid_ranges]
 
-    # grid_ranges = [range(x) for x in np.shape(map_grid)]
-    # coos_grid = np.mgrid[grid_ranges]
-
     # Reshape coos_grid to 1D array of coordinates
     out_coos_vec = np.asarray(out_coos_grid).reshape(3, out_grid_size)
-    # coos_vec = np.asarray(coos_grid).reshape(3,np.size(map_grid))
 
     # Rotate the coordinates with the inverse to the angle provided
     rot_coos_vec = rotation.apply(out_coos_vec.T - rotation_centre - box_padding, inverse=True) + rotation_centre - initial_translation
-    # rot_coos_vec = rotation.apply(coos_vec.T - rotation_centre, inverse=True) + rotation_centre - initial_translation
 
     # Interpolate map values at the rotated coordinates
     rot_map_value_vec = ndimage.map_coordinates(map_grid, rot_coos_vec.T, order=interpolation_order, mode='constant', cval=fill_value).astype(dtype)
 
     # Reshape rotated map values to grid with the shape of map grid and return
     rot_map_grid = rot_map_value_vec.reshape(out_map_shape)
-    # rot_map_grid = rot_map_value_vec.reshape(np.shape(map_grid))
     return rot_map_grid
 
 if __name__ == "__main__":
