@@ -49,10 +49,13 @@ class MapLineProjections:
         bbounds = [ (1 / (20 * self.variance[idx]**2), 5 / self.variance[idx]**2) for idx in MapLineProjections.PERM_IDX[:,0] ]
         cbounds = [ (0.9 * self.cent_coords[idx], 1.1 * self.cent_coords[idx]) for idx in MapLineProjections.PERM_IDX[:,0] ]
         dbounds = (self.min, self.min + 0.01 * self.range)
-        prof_fit = list(map(lambda idx: curve_fit(MapLineProjections.fit_exp4_func, self.coords[idx], self.map_prof[idx],
-                            bounds=([abounds[0][idx], bbounds[idx][0],cbounds[idx][0], dbounds[0][idx]], [abounds[1][idx],bbounds[idx][1],cbounds[idx][1],dbounds[1][idx]])),
-                            MapLineProjections.PERM_IDX[:,0]))
-        #logger.debug(f"Fitting parameters:\n{prof_fit}")
+        try:
+            prof_fit = list(map(lambda idx: curve_fit(MapLineProjections.fit_exp4_func, self.coords[idx], self.map_prof[idx],
+                                bounds=([abounds[0][idx], bbounds[idx][0],cbounds[idx][0], dbounds[0][idx]], [abounds[1][idx],bbounds[idx][1],cbounds[idx][1],dbounds[1][idx]])),
+                                MapLineProjections.PERM_IDX[:,0]))
+        except Exception as e:
+            logger.error("Could not fit map.", exc_info=e)
+            return None
         logger.debug(f"Fit parameter a: ({prof_fit[0][0][0]}, {prof_fit[1][0][0]}, {prof_fit[2][0][0]})")
         logger.debug(f"Fit parameter b: ({prof_fit[0][0][1]}, {prof_fit[1][0][1]}, {prof_fit[2][0][1]})")
         logger.debug(f"Fit parameter c: ({prof_fit[0][0][2]}, {prof_fit[1][0][2]}, {prof_fit[2][0][2]})")
@@ -71,13 +74,20 @@ class MapLineProjections:
         :return: Array of 3 widths.
         """
 
-        y = -np.asarray(self.min).reshape(3,1)
-        x = np.add(self.map_prof, y)
-        cum_sum = np.cumsum(x, axis=1) / np.asarray(np.sum(x, axis=1)).reshape(3,1)
+        # y = -np.asarray(self.min).reshape(3,1)
+        # x = np.add(self.map_prof, y)
+        # cum_sum = np.cumsum(x, axis=1) / np.asarray(np.sum(x, axis=1)).reshape(3,1)
+
+        y = -self.min
+        x = tuple(map(lambda i: np.add(self.map_prof[i], y[i]), range(3)))
+        cum_sum = tuple(map(lambda v: np.cumsum(v) / np.sum(v), x))
+
 
         # Find threshold value and threshold map
-        idx1 = np.apply_along_axis(np.searchsorted, 1, cum_sum, threshold)
-        idx2 = np.apply_along_axis(np.searchsorted, 1, cum_sum, 1 - threshold)
+        idx1 = np.array(list(map(lambda v: np.searchsorted(v, threshold), cum_sum)))
+        idx2 = np.array(list(map(lambda v: np.searchsorted(v, 1 - threshold), cum_sum)))
+        # idx1 = np.apply_along_axis(np.searchsorted, 1, cum_sum, threshold)
+        # idx2 = np.apply_along_axis(np.searchsorted, 1, cum_sum, 1 - threshold)
 
         return idx2 - idx1
 
@@ -97,7 +107,8 @@ class MapLineProjections:
 
         for idx in MapLineProjections.PERM_IDX[:,0]:
             ax[idx].plot(self.map_prof[idx])
-            ax[idx].plot(self.coords[idx], MapLineProjections.fit_exp4_func(self.coords[idx], *self.prof_fit[idx][0]))
+            if self.prof_fit:
+                ax[idx].plot(self.coords[idx], MapLineProjections.fit_exp4_func(self.coords[idx], *self.prof_fit[idx][0]))
 
             ax[idx].set(xlabel='Index', ylabel='Sum',
                title=f'1D profile in index: {idx}')
@@ -121,7 +132,9 @@ class MapLineProjections:
         self.map_prof = tuple(map(lambda x: map_grid.sum(axis=(x[1],x[2])), MapLineProjections.PERM_IDX))
 
         # Basic stats
-        self.min, self.max = np.min(self.map_prof, axis=1), np.max(self.map_prof, axis=1)
+        self.min = np.array(list(map(lambda x: np.min(x), self.map_prof)))
+        self.max = np.array(list(map(lambda x: np.max(x), self.map_prof)))
+        # self.min, self.max = np.min(self.map_prof, axis=1), np.max(self.map_prof, axis=1)
         self.range = self.max - self.min
 
         # Sum each profile
