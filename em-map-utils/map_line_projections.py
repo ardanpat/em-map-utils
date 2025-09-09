@@ -156,12 +156,16 @@ class MapLineProjections:
 
         # FWHM of profile
         log2 = np.log(2)
-        self.prof_fit_fwhm = list(map(lambda idx: 2 * (log2 / self.prof_fit[idx][0][1]) ** 0.25, MapLineProjections.PERM_IDX[:, 0]))
+        if self.prof_fit:
+            self.prof_fit_fwhm = list(
+                map(lambda idx: 2 * (log2 / self.prof_fit[idx][0][1]) ** 0.25, MapLineProjections.PERM_IDX[:, 0]))
 
-        # Reciprocal e width of profile
-        self.prof_fit_rec_e_width  = list(map(lambda idx: 2 * np.pow(self.prof_fit[idx][0][1], -0.25), MapLineProjections.PERM_IDX[:, 0]))
-
-
+            # Reciprocal e width of profile
+            self.prof_fit_rec_e_width = list(
+                map(lambda idx: 2 * np.pow(self.prof_fit[idx][0][1], -0.25), MapLineProjections.PERM_IDX[:, 0]))
+        else:
+            self.prof_fit_fwhm = None
+            self.prof_fit_rec_e_width = None
 
     def __str__(self):
 
