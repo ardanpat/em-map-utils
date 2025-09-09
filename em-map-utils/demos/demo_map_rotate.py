@@ -16,7 +16,7 @@ from ..filled_cuboid import filled_cuboid
 from ..map_rotate import map_rotate
 from .ortho_surface_views import ortho_surface_views
 
-def plot_rotated_map(in_file, lengths, box_size, rotation, translation, out_file):
+def plot_rotated_map(in_file, lengths, box_size, rotation, translation, cubify, out_file):
     """
     Rotate a cuboid (or an optionally specified map) and show the
     orthogonal surface views.
@@ -27,6 +27,7 @@ def plot_rotated_map(in_file, lengths, box_size, rotation, translation, out_file
     :param box_size: Size of the 3D volume box.
     :param rotation: Euler angle of rotation in an intrinsic frame following Z-Y'-Z" convention.
     :param translation: An initial translation vector.
+    :param cubify: If a map is not cubic, pad it to the largest dimension.
     :param out_file: Optional file to save the figure to.
     :return: No return value.
     """
@@ -40,7 +41,8 @@ def plot_rotated_map(in_file, lengths, box_size, rotation, translation, out_file
     # Note: In scipy the axis order is reversed (i,j,k) map to (x,y,z)
     rot = R.from_euler('XYX', rotation, degrees=True)
 
-    rot_map = map_rotate(map_grid, rotation=rot, initial_translation=translation)
+    rot_map = map_rotate(map_grid, rotation=rot, initial_translation=translation, cubify_if_needed=cubify)
+
     fig, ax = ortho_surface_views(rot_map, fig_title="Rotated map")
     if out_file:
         fig.savefig(out_file)
@@ -62,5 +64,7 @@ if __name__ == '__main__':
     parser.add_argument('-t', '--translation', metavar='TTT', type=float, nargs=3,
                         help='Optional initial translation prior to rotation.')
     parser.add_argument('-r', '--rotation', metavar='RRR', type=float, nargs=3, default=[20, 0,0], help="Relative Euler angle in degrees using Z-Y\'-Z\" order and a right handed convention.")
+    parser.add_argument("-c", '--cubify', action='store_true', help="If a map is not cubic, pad it to the largest dimension before rotating.")
+
     args = parser.parse_args()
-    plot_rotated_map(args.infile, args.lengths, args.box_size, args.rotation, args.translation, args.outfile)
+    plot_rotated_map(args.infile, args.lengths, args.box_size, args.rotation, args.translation, args.cubify, args.outfile)
