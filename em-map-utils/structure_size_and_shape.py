@@ -74,7 +74,7 @@ def asphericity_coefficient(a, b, c):
     """
     rg = elliprg(1.0 / (a * a), 1.0 / (b * b), 1.0 / (c * c))
     rav = np.pow(a*b*c,1/3)
-    return 1 - 1 / (rav * rg)
+    return np.abs(1 - 1 / (rav * rg))
 
 def structure_size_and_shape(entry_file, aligned_file=None, plot_profile=True, csv_file=None, csv_mode="a"):
     """
