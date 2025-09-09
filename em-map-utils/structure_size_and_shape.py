@@ -100,7 +100,7 @@ def structure_size_and_shape(entry_file, aligned_file=None, plot_profile=True, c
         map_grid, threshold, hist, prof = threshold_map(mrc.data)
 
         # Align map's principal axes to those of the box
-        aligned_map, rot, cov_info = MC.align_map_principal_axes(map_grid)
+        aligned_map, rot, cov_info = MC.align_map_principal_axes(map_grid, cubify_if_needed=True)
 
         # Some values may be < 0 due to interpolation artifacts -> zero them
         aligned_map = np.where(aligned_map >= threshold, aligned_map, 0)
