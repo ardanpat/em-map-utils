@@ -13,6 +13,8 @@ import logging
 import matplotlib.pyplot as plt
 import mrcfile
 import numpy as np
+from numpy import dtype
+
 from .map_line_projections import MapLineProjections
 from .util import save_map
 
@@ -101,12 +103,12 @@ class MapHistogram:
 
         # Check if max_idx is equal to the max histogram index
         if self.map_hist_max_idx == self.map_histogram.size - 1:
-            print("Warning: Histogram peak found at right edge of histogram which would imply no information to the right of background peak.")
-            print("Warning: Using index of the left edge of the histogram instead.")
+            logger.debug("Warning: Histogram peak found at right edge of histogram which would imply no information to the right of background peak.")
+            logger.debug("Warning: Using index of the left edge of the histogram instead.")
             self.map_hist_max_idx = 0
 
         # Calculate map histogram stats
-        mhist_sum = np.sum(self.map_histogram) * self.bin_width
+        mhist_sum = np.sum(self.map_histogram)
         mhist_grid = self.bins[:-1] + 0.5 * self.bin_width
 
         self.map_mean = (np.dot(self.map_histogram, mhist_grid) / mhist_sum)
@@ -114,7 +116,10 @@ class MapHistogram:
         self.map_sigma = np.sqrt(self.map_var)
 
         # Make new histogram taking the old one up to the peak and then mirroring it onto the right
-        self.bg_histogram = np.concatenate((self.map_histogram[0:self.map_hist_max_idx + 1], self.map_histogram[self.map_hist_max_idx - 1::-1]))
+        if self.map_hist_max_idx == 0:
+            self.bg_histogram = self.map_histogram[0:1]
+        else :
+            self.bg_histogram = np.concatenate((self.map_histogram[0:self.map_hist_max_idx + 1], self.map_histogram[self.map_hist_max_idx - 1::-1]))
 
         # Calculate stats of background histogram
 
@@ -132,10 +137,10 @@ class MapHistogram:
 
     def __str__(self):
         str = f"Histogram info:\n" + \
-              f"Index of peak in map histogram is {self.map_hist_max_idx} with a map value {self.map_hist_max_val}" + \
-              f"Mean value of map  is {self.map_mean}" + \
-              f"Variance of map  is {self.map_var}" + \
-              f"Standard deviation of map  is {self.map_sigma}" + \
+              f"Index of peak in map histogram is {self.map_hist_max_idx} with a map value {self.map_hist_max_val}\n" + \
+              f"Mean value of map  is {self.map_mean}\n" + \
+              f"Variance of map  is {self.map_var}\n" + \
+              f"Standard deviation of map  is {self.map_sigma}\n" + \
               f"Sum of background histogram is {self.bg_hist_sum}\n" + \
               f"Background / (Signal + Background) is {self.bg_frac}\n" + \
               f"Signal fraction is {1 - self.bg_frac}\n" + \
