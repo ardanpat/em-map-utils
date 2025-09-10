@@ -11,8 +11,6 @@ Description:
     This file contains initialisation for this package.
 """
 
-__author__ = "Ardan Patwardhan"
-
 # Setup logging
 import logging
 import sys
