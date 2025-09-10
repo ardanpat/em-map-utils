@@ -1,4 +1,4 @@
-# em-map-utils
+# em_map_utils
 Python package for create and manipulating cryoEM maps in EMDB (mrc) map format.
 
 ## Features

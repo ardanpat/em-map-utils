@@ -5,7 +5,7 @@ Author: Ardan Patwardhan
 Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
 Date: 28/07/2025
 Description: 
-    em-map-utils: Package for creating and manipulating cryoEM maps in
+    em_map_utils: Package for creating and manipulating cryoEM maps in
     the MRC/CCP4/EMDB map formats.
 
     This file contains initialisation for this package.
