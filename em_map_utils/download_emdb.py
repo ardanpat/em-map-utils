@@ -168,7 +168,7 @@ def main():
     args = parser.parse_args()
 
     if args.emdb_list is None:
-        download_emdb_map(args.download_dir, args.emdb_id, loc=args.site, resume=args.resume,
+        download_emdb_map( args.emdb_id, args.download_dir, loc=args.site, resume=args.resume,
                           chunk_size=args.chunk_size)
     else:
         if args.resume:
