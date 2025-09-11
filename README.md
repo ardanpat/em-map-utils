@@ -11,4 +11,5 @@ Python package for create and manipulating cryoEM maps in EMDB (mrc) map format.
 * Use multiprocessing to efficiently download multiple maps from EMDB.
 * Generate synthetic maps containing a cuboid, cylinder or sphere.
 
+## [API documentation](./docs/build/index.html)
 ## In development - prerelease version!

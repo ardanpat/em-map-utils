@@ -1,10 +1,10 @@
 """
 __init__.py
 
-Author: Ardan Patwardhan
-Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
-Date: 28/07/2025
-Description: 
+:Author: Ardan Patwardhan
+:Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
+:Date: 28/07/2025
+:Description:
     em_map_utils: Package for creating and manipulating cryoEM maps in
     the MRC/CCP4/EMDB map formats.
 

@@ -1,10 +1,10 @@
 """
 ortho_surface_views.py
 
-Author: Ardan Patwardhan
-Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
-Date: 30/07/2025
-Description: 
+:Author: Ardan Patwardhan
+:Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
+:Date: 30/07/2025
+:Description:
     Plot orthogonal surface views in the i, j and k directions of a
     3D numpy grid.
 """

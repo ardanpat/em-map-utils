@@ -1,10 +1,10 @@
 """
 util.py
 
-Author: Ardan Patwardhan
-Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
-Date: 31/07/2025
-Description: 
+:Author: Ardan Patwardhan
+:Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
+:Date: 31/07/2025
+:Description:
     Utility functions used by various modules.
 """
 import mrcfile

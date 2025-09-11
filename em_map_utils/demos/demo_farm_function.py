@@ -1,10 +1,10 @@
 """
 demo_farm_function.py
 
-Author: Ardan Patwardhan
-Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
-Date: 25/08/2025
-Description: 
+:Author: Ardan Patwardhan
+:Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
+:Date: 25/08/2025
+:Description:
     Demo usage of farm function using a dummy function that can fail 50
     percent of the time.
 """
@@ -32,7 +32,8 @@ if __name__ == '__main__':
     mp.freeze_support()
     parser = argparse.ArgumentParser(
         description='Run multiple instances of function which fails randomly and generates random output.')
-    parser.add_argument("file_root", metavar='FILE', type=str, help="File root including path for database and output file.")
+    parser.add_argument('-f', '--file_root', metavar='FILE', type=str, default='multiproc',
+                        help="File root including path for database and output file.")
     parser.add_argument('-n', '--num_values', metavar='XXX', type=int, default=50,
                         help='Number of function evaluations.')
     parser.add_argument('-w', '--num_workers', metavar='YYY', type=int, default=14,

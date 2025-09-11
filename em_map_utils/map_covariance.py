@@ -1,10 +1,10 @@
 """
 map_covariance.py
 
-Author: Ardan Patwardhan
-Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
-Date: 31/07/2025
-Description: 
+:Author: Ardan Patwardhan
+:Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
+:Date: 31/07/2025
+:Description:
     Class for handling the covariance matrix of the map value
     distribution and related eigenvectors and eigenvalues.
 """

@@ -1,10 +1,10 @@
 """
 filled_cylinder.py
 
-Author: Ardan Patwardhan
-Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
-Date: 28/07/2025
-Description: 
+:Author: Ardan Patwardhan
+:Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
+:Date: 28/07/2025
+:Description:
     Generate a 3D volume containing a filled cylinder.
 """
 

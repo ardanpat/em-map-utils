@@ -1,10 +1,10 @@
 """
 demo_map_line_projections.py
 
-Author: Ardan Patwardhan
-Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
-Date: 04/08/2025
-Description: 
+:Author: Ardan Patwardhan
+:Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
+:Date: 04/08/2025
+:Description:
     Plot line projections of a cuboid.
 """
 

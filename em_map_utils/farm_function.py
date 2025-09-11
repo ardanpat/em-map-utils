@@ -1,10 +1,10 @@
 """
 farm_function.py
 
-Author: Ardan Patwardhan
-Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
-Date: 25/08/2025
-Description: 
+:Author: Ardan Patwardhan
+:Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
+:Date: 25/08/2025
+:Description:
     Run multiple processes of the same function, changing one parameter
     and collecting any results in a JSON file.
 """

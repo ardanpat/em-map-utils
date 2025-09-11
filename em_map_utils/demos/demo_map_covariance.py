@@ -1,10 +1,10 @@
 """
 demo_map_covariance.py
 
-Author: Ardan Patwardhan
-Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
-Date: 04/08/2025
-Description: 
+:Author: Ardan Patwardhan
+:Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
+:Date: 04/08/2025
+:Description:
     Demonstrate the use of estimating map principal axes.
     A cuboid is first rotated by a known angle. The principal axes of
     the rotated map are used to estimate the back rotation of the map

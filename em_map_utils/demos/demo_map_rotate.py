@@ -1,10 +1,10 @@
 """
 demo_map_rotate.py
 
-Author: Ardan Patwardhan
-Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
-Date: 31/07/2025
-Description: 
+:Author: Ardan Patwardhan
+:Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
+:Date: 31/07/2025
+:Description:
     Rotate a simple map and show the orthogonal surface views.
 """
 

@@ -1,10 +1,10 @@
 """
 structure_size_and_shape.py
 
-Author: Ardan Patwardhan
-Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
-Date: 07/08/2025
-Description: 
+:Author: Ardan Patwardhan
+:Affiliation: EMBL-EBI, Wellcome Genome Campus, CB10 1SD, UK
+:Date: 07/08/2025
+:Description:
     Threshold and align map with a box by determining the principal axes
     of the structure and then aligning the principal axes to the box.
     Estimate the size of the molecule using the lengths of the 3
