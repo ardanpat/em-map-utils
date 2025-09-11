@@ -1,0 +1,933 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="#" /><link rel="search" title="Search" href="search.html" />
+
+    <!-- Generated with Sphinx 7.4.7 and Furo 2025.07.19 --><title>Index - em_map_utils 0.0.2 documentation</title>
+<link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=25af2a20" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=ad57bd55" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #2b2b2b;
+  --color-code-foreground: #f8f8f2;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #2b2b2b;
+  --color-code-foreground: #f8f8f2;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">em_map_utils 0.0.2 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">em_map_utils 0.0.2 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="autoapi/index.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/em_map_utils/index.html">em_map_utils</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of em_map_utils</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/em_map_utils/demos/index.html">em_map_utils.demos</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of em_map_utils.demos</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/em_map_utils/demos/demo_farm_function/index.html">em_map_utils.demos.demo_farm_function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/em_map_utils/demos/demo_filled_cuboid/index.html">em_map_utils.demos.demo_filled_cuboid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/em_map_utils/demos/demo_filled_cylinder/index.html">em_map_utils.demos.demo_filled_cylinder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/em_map_utils/demos/demo_filled_sphere/index.html">em_map_utils.demos.demo_filled_sphere</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/em_map_utils/demos/demo_map_covariance/index.html">em_map_utils.demos.demo_map_covariance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/em_map_utils/demos/demo_map_line_projections/index.html">em_map_utils.demos.demo_map_line_projections</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/em_map_utils/demos/demo_map_rotate/index.html">em_map_utils.demos.demo_map_rotate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/em_map_utils/demos/ortho_surface_views/index.html">em_map_utils.demos.ortho_surface_views</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/em_map_utils/download_emdb/index.html">em_map_utils.download_emdb</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/em_map_utils/farm_function/index.html">em_map_utils.farm_function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/em_map_utils/filled_cuboid/index.html">em_map_utils.filled_cuboid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/em_map_utils/filled_cylinder/index.html">em_map_utils.filled_cylinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/em_map_utils/filled_sphere/index.html">em_map_utils.filled_sphere</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/em_map_utils/map_covariance/index.html">em_map_utils.map_covariance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/em_map_utils/map_line_projections/index.html">em_map_utils.map_line_projections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/em_map_utils/map_rotate/index.html">em_map_utils.map_rotate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/em_map_utils/map_threshold/index.html">em_map_utils.map_threshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/em_map_utils/structure_size_and_shape/index.html">em_map_utils.structure_size_and_shape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/em_map_utils/util/index.html">em_map_utils.util</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          
+<section class="genindex-section">
+  <h1 id="index">Index</h1>
+  <div class="genindex-jumpbox"><a href="#A"><strong>A</strong></a> | <a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#K"><strong>K</strong></a> | <a href="#L"><strong>L</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#O"><strong>O</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#V"><strong>V</strong></a> | <a href="#W"><strong>W</strong></a></div>
+</section>
+<section id="A" class="genindex-section">
+  <h2>A</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/map_covariance/index.html#em_map_utils.map_covariance.MapCovariance.align_map_principal_axes">align_map_principal_axes() (em_map_utils.map_covariance.MapCovariance class method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.args">args (em_map_utils.farm_function.FarmFunction attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/structure_size_and_shape/index.html#em_map_utils.structure_size_and_shape.asphericity_coefficient">asphericity_coefficient() (in module em_map_utils.structure_size_and_shape)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="B" class="genindex-section">
+  <h2>B</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.MapHistogram.bg_frac">bg_frac (em_map_utils.map_threshold.MapHistogram attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.MapHistogram.bg_hist_sum">bg_hist_sum (em_map_utils.map_threshold.MapHistogram attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.MapHistogram.bg_mean">bg_mean (em_map_utils.map_threshold.MapHistogram attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.MapHistogram.bg_mean_idx">bg_mean_idx (em_map_utils.map_threshold.MapHistogram attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.MapHistogram.bg_sigma">bg_sigma (em_map_utils.map_threshold.MapHistogram attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.MapHistogram.bg_threshold">bg_threshold (em_map_utils.map_threshold.MapHistogram attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.MapHistogram.bg_var">bg_var (em_map_utils.map_threshold.MapHistogram attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.MapHistogram.bg_var_idx">bg_var_idx (em_map_utils.map_threshold.MapHistogram attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.MapHistogram.bin_width">bin_width (em_map_utils.map_threshold.MapHistogram attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="C" class="genindex-section">
+  <h2>C</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/map_line_projections/index.html#em_map_utils.map_line_projections.MapLineProjections.cent_coords">cent_coords (em_map_utils.map_line_projections.MapLineProjections attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_covariance/index.html#em_map_utils.map_covariance.MapCovariance.centre_coos">centre_coos (em_map_utils.map_covariance.MapCovariance attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_line_projections/index.html#em_map_utils.map_line_projections.MapLineProjections.coords">coords (em_map_utils.map_line_projections.MapLineProjections attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/map_covariance/index.html#em_map_utils.map_covariance.MapCovariance.cov_matrix">cov_matrix (em_map_utils.map_covariance.MapCovariance attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.MapHistogram.cum_dist_func">cum_dist_func (em_map_utils.map_threshold.MapHistogram attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_line_projections/index.html#em_map_utils.map_line_projections.MapLineProjections.cum_prof_width">cum_prof_width (em_map_utils.map_line_projections.MapLineProjections attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_line_projections/index.html#em_map_utils.map_line_projections.MapLineProjections.cumulative_profile_width">cumulative_profile_width() (em_map_utils.map_line_projections.MapLineProjections method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="D" class="genindex-section">
+  <h2>D</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.db_name">db_name (em_map_utils.farm_function.FarmFunction attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.dict_factory">dict_factory() (em_map_utils.farm_function.FarmFunction static method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/download_emdb/index.html#em_map_utils.download_emdb.download_emdb_map">download_emdb_map() (in module em_map_utils.download_emdb)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/demos/demo_farm_function/index.html#em_map_utils.demos.demo_farm_function.dummy">dummy() (in module em_map_utils.demos.demo_farm_function)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="E" class="genindex-section">
+  <h2>E</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/map_covariance/index.html#em_map_utils.map_covariance.MapCovariance.eigenvalues">eigenvalues (em_map_utils.map_covariance.MapCovariance attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_covariance/index.html#em_map_utils.map_covariance.MapCovariance.eigenvectors">eigenvectors (em_map_utils.map_covariance.MapCovariance attribute)</a>
+</li>
+        <li>
+    em_map_utils
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/index.html#module-em_map_utils">module</a>, <a href="generated/em_map_utils.html#module-em_map_utils">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    em_map_utils.demos
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/demos/index.html#module-em_map_utils.demos">module</a>, <a href="generated/em_map_utils.demos.html#module-em_map_utils.demos">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    em_map_utils.demos.demo_farm_function
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/demos/demo_farm_function/index.html#module-em_map_utils.demos.demo_farm_function">module</a>, <a href="generated/em_map_utils.demos.demo_farm_function.html#module-em_map_utils.demos.demo_farm_function">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    em_map_utils.demos.demo_filled_cuboid
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/demos/demo_filled_cuboid/index.html#module-em_map_utils.demos.demo_filled_cuboid">module</a>, <a href="generated/em_map_utils.demos.demo_filled_cuboid.html#module-em_map_utils.demos.demo_filled_cuboid">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    em_map_utils.demos.demo_filled_cylinder
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/demos/demo_filled_cylinder/index.html#module-em_map_utils.demos.demo_filled_cylinder">module</a>, <a href="generated/em_map_utils.demos.demo_filled_cylinder.html#module-em_map_utils.demos.demo_filled_cylinder">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    em_map_utils.demos.demo_filled_sphere
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/demos/demo_filled_sphere/index.html#module-em_map_utils.demos.demo_filled_sphere">module</a>, <a href="generated/em_map_utils.demos.demo_filled_sphere.html#module-em_map_utils.demos.demo_filled_sphere">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    em_map_utils.demos.demo_map_covariance
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/demos/demo_map_covariance/index.html#module-em_map_utils.demos.demo_map_covariance">module</a>, <a href="generated/em_map_utils.demos.demo_map_covariance.html#module-em_map_utils.demos.demo_map_covariance">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    em_map_utils.demos.demo_map_line_projections
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/demos/demo_map_line_projections/index.html#module-em_map_utils.demos.demo_map_line_projections">module</a>, <a href="generated/em_map_utils.demos.demo_map_line_projections.html#module-em_map_utils.demos.demo_map_line_projections">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    em_map_utils.demos.demo_map_rotate
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/demos/demo_map_rotate/index.html#module-em_map_utils.demos.demo_map_rotate">module</a>, <a href="generated/em_map_utils.demos.demo_map_rotate.html#module-em_map_utils.demos.demo_map_rotate">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    em_map_utils.demos.ortho_surface_views
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/demos/ortho_surface_views/index.html#module-em_map_utils.demos.ortho_surface_views">module</a>, <a href="generated/em_map_utils.demos.ortho_surface_views.html#module-em_map_utils.demos.ortho_surface_views">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    em_map_utils.download_emdb
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/download_emdb/index.html#module-em_map_utils.download_emdb">module</a>, <a href="generated/em_map_utils.download_emdb.html#module-em_map_utils.download_emdb">[1]</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    em_map_utils.farm_function
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/farm_function/index.html#module-em_map_utils.farm_function">module</a>, <a href="generated/em_map_utils.farm_function.html#module-em_map_utils.farm_function">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    em_map_utils.filled_cuboid
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/filled_cuboid/index.html#module-em_map_utils.filled_cuboid">module</a>, <a href="generated/em_map_utils.filled_cuboid.html#module-em_map_utils.filled_cuboid">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    em_map_utils.filled_cylinder
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/filled_cylinder/index.html#module-em_map_utils.filled_cylinder">module</a>, <a href="generated/em_map_utils.filled_cylinder.html#module-em_map_utils.filled_cylinder">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    em_map_utils.filled_sphere
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/filled_sphere/index.html#module-em_map_utils.filled_sphere">module</a>, <a href="generated/em_map_utils.filled_sphere.html#module-em_map_utils.filled_sphere">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    em_map_utils.map_covariance
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/map_covariance/index.html#module-em_map_utils.map_covariance">module</a>, <a href="generated/em_map_utils.map_covariance.html#module-em_map_utils.map_covariance">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    em_map_utils.map_line_projections
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/map_line_projections/index.html#module-em_map_utils.map_line_projections">module</a>, <a href="generated/em_map_utils.map_line_projections.html#module-em_map_utils.map_line_projections">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    em_map_utils.map_rotate
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/map_rotate/index.html#module-em_map_utils.map_rotate">module</a>, <a href="generated/em_map_utils.map_rotate.html#module-em_map_utils.map_rotate">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    em_map_utils.map_threshold
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/map_threshold/index.html#module-em_map_utils.map_threshold">module</a>, <a href="generated/em_map_utils.map_threshold.html#module-em_map_utils.map_threshold">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    em_map_utils.structure_size_and_shape
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/structure_size_and_shape/index.html#module-em_map_utils.structure_size_and_shape">module</a>, <a href="generated/em_map_utils.structure_size_and_shape.html#module-em_map_utils.structure_size_and_shape">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    em_map_utils.util
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/util/index.html#module-em_map_utils.util">module</a>, <a href="generated/em_map_utils.util.html#module-em_map_utils.util">[1]</a>
+</li>
+        </ul></li>
+        <li><a href="autoapi/em_map_utils/download_emdb/index.html#em_map_utils.download_emdb.emdb_root">emdb_root (in module em_map_utils.download_emdb)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/download_emdb/index.html#em_map_utils.download_emdb.emdbid_pattern">emdbid_pattern (in module em_map_utils.download_emdb)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="F" class="genindex-section">
+  <h2>F</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.f">f (em_map_utils.farm_function.FarmFunction attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.fail_queue">fail_queue (em_map_utils.farm_function.FarmFunction attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction">FarmFunction (class in em_map_utils.farm_function)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.file_root">file_root (em_map_utils.farm_function.FarmFunction attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/filled_cuboid/index.html#em_map_utils.filled_cuboid.filled_cuboid">filled_cuboid() (in module em_map_utils.filled_cuboid)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/filled_cylinder/index.html#em_map_utils.filled_cylinder.filled_cylinder">filled_cylinder() (in module em_map_utils.filled_cylinder)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/filled_sphere/index.html#em_map_utils.filled_sphere.filled_sphere">filled_sphere() (in module em_map_utils.filled_sphere)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_covariance/index.html#em_map_utils.map_covariance.MapCovariance.find_closest_rhas">find_closest_rhas() (em_map_utils.map_covariance.MapCovariance class method)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_line_projections/index.html#em_map_utils.map_line_projections.MapLineProjections.fit_exp4">fit_exp4() (em_map_utils.map_line_projections.MapLineProjections method)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_line_projections/index.html#em_map_utils.map_line_projections.MapLineProjections.fit_exp4_func">fit_exp4_func() (em_map_utils.map_line_projections.MapLineProjections static method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="G" class="genindex-section">
+  <h2>G</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/download_emdb/index.html#em_map_utils.download_emdb.get_emdb_map_name">get_emdb_map_name() (in module em_map_utils.download_emdb)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/download_emdb/index.html#em_map_utils.download_emdb.get_emdb_map_url">get_emdb_map_url() (in module em_map_utils.download_emdb)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/download_emdb/index.html#em_map_utils.download_emdb.get_map_download_path">get_map_download_path() (in module em_map_utils.download_emdb)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="K" class="genindex-section">
+  <h2>K</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.kwargs">kwargs (em_map_utils.farm_function.FarmFunction attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="L" class="genindex-section">
+  <h2>L</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/map_covariance/index.html#em_map_utils.map_covariance.MapCovariance.lengths_from_eigenvalues">lengths_from_eigenvalues() (em_map_utils.map_covariance.MapCovariance method)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.lock">lock (em_map_utils.farm_function.FarmFunction attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/index.html#em_map_utils.logger">logger (in module em_map_utils)</a>
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/demos/demo_map_covariance/index.html#em_map_utils.demos.demo_map_covariance.logger">(in module em_map_utils.demos.demo_map_covariance)</a>
+</li>
+          <li><a href="autoapi/em_map_utils/download_emdb/index.html#em_map_utils.download_emdb.logger">(in module em_map_utils.download_emdb)</a>
+</li>
+          <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.logger">(in module em_map_utils.farm_function)</a>
+</li>
+          <li><a href="autoapi/em_map_utils/map_covariance/index.html#em_map_utils.map_covariance.logger">(in module em_map_utils.map_covariance)</a>
+</li>
+          <li><a href="autoapi/em_map_utils/map_line_projections/index.html#em_map_utils.map_line_projections.logger">(in module em_map_utils.map_line_projections)</a>
+</li>
+          <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.logger">(in module em_map_utils.map_threshold)</a>
+</li>
+          <li><a href="autoapi/em_map_utils/structure_size_and_shape/index.html#em_map_utils.structure_size_and_shape.logger">(in module em_map_utils.structure_size_and_shape)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="M" class="genindex-section">
+  <h2>M</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/download_emdb/index.html#em_map_utils.download_emdb.main">main() (in module em_map_utils.download_emdb)</a>
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/structure_size_and_shape/index.html#em_map_utils.structure_size_and_shape.main">(in module em_map_utils.structure_size_and_shape)</a>
+</li>
+        </ul></li>
+        <li><a href="autoapi/em_map_utils/map_line_projections/index.html#em_map_utils.map_line_projections.MapLineProjections.map_grid">map_grid (em_map_utils.map_line_projections.MapLineProjections attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.MapHistogram.map_hist_max_idx">map_hist_max_idx (em_map_utils.map_threshold.MapHistogram attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.MapHistogram.map_hist_max_val">map_hist_max_val (em_map_utils.map_threshold.MapHistogram attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.MapHistogram.map_mean">map_mean (em_map_utils.map_threshold.MapHistogram attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/structure_size_and_shape/index.html#em_map_utils.structure_size_and_shape.map_name_pattern">map_name_pattern (in module em_map_utils.structure_size_and_shape)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_line_projections/index.html#em_map_utils.map_line_projections.MapLineProjections.map_prof">map_prof (em_map_utils.map_line_projections.MapLineProjections attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_rotate/index.html#em_map_utils.map_rotate.map_rotate">map_rotate() (in module em_map_utils.map_rotate)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_covariance/index.html#em_map_utils.map_covariance.MapCovariance.map_rotate_forward_backward">map_rotate_forward_backward() (em_map_utils.map_covariance.MapCovariance class method)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.MapHistogram.map_sigma">map_sigma (em_map_utils.map_threshold.MapHistogram attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.MapHistogram.map_var">map_var (em_map_utils.map_threshold.MapHistogram attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_covariance/index.html#em_map_utils.map_covariance.MapCovariance">MapCovariance (class in em_map_utils.map_covariance)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.MapHistogram">MapHistogram (class in em_map_utils.map_threshold)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_line_projections/index.html#em_map_utils.map_line_projections.MapLineProjections">MapLineProjections (class in em_map_utils.map_line_projections)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_line_projections/index.html#em_map_utils.map_line_projections.MapLineProjections.max">max (em_map_utils.map_line_projections.MapLineProjections attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.max_cpu">max_cpu (em_map_utils.farm_function.FarmFunction attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.max_tries">max_tries (em_map_utils.farm_function.FarmFunction attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_line_projections/index.html#em_map_utils.map_line_projections.MapLineProjections.min">min (em_map_utils.map_line_projections.MapLineProjections attribute)</a>
+</li>
+        <li>
+    module
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/index.html#module-em_map_utils">em_map_utils</a>, <a href="generated/em_map_utils.html#module-em_map_utils">[1]</a>
+</li>
+          <li><a href="autoapi/em_map_utils/demos/index.html#module-em_map_utils.demos">em_map_utils.demos</a>, <a href="generated/em_map_utils.demos.html#module-em_map_utils.demos">[1]</a>
+</li>
+          <li><a href="autoapi/em_map_utils/demos/demo_farm_function/index.html#module-em_map_utils.demos.demo_farm_function">em_map_utils.demos.demo_farm_function</a>, <a href="generated/em_map_utils.demos.demo_farm_function.html#module-em_map_utils.demos.demo_farm_function">[1]</a>
+</li>
+          <li><a href="autoapi/em_map_utils/demos/demo_filled_cuboid/index.html#module-em_map_utils.demos.demo_filled_cuboid">em_map_utils.demos.demo_filled_cuboid</a>, <a href="generated/em_map_utils.demos.demo_filled_cuboid.html#module-em_map_utils.demos.demo_filled_cuboid">[1]</a>
+</li>
+          <li><a href="autoapi/em_map_utils/demos/demo_filled_cylinder/index.html#module-em_map_utils.demos.demo_filled_cylinder">em_map_utils.demos.demo_filled_cylinder</a>, <a href="generated/em_map_utils.demos.demo_filled_cylinder.html#module-em_map_utils.demos.demo_filled_cylinder">[1]</a>
+</li>
+          <li><a href="autoapi/em_map_utils/demos/demo_filled_sphere/index.html#module-em_map_utils.demos.demo_filled_sphere">em_map_utils.demos.demo_filled_sphere</a>, <a href="generated/em_map_utils.demos.demo_filled_sphere.html#module-em_map_utils.demos.demo_filled_sphere">[1]</a>
+</li>
+          <li><a href="autoapi/em_map_utils/demos/demo_map_covariance/index.html#module-em_map_utils.demos.demo_map_covariance">em_map_utils.demos.demo_map_covariance</a>, <a href="generated/em_map_utils.demos.demo_map_covariance.html#module-em_map_utils.demos.demo_map_covariance">[1]</a>
+</li>
+          <li><a href="autoapi/em_map_utils/demos/demo_map_line_projections/index.html#module-em_map_utils.demos.demo_map_line_projections">em_map_utils.demos.demo_map_line_projections</a>, <a href="generated/em_map_utils.demos.demo_map_line_projections.html#module-em_map_utils.demos.demo_map_line_projections">[1]</a>
+</li>
+          <li><a href="autoapi/em_map_utils/demos/demo_map_rotate/index.html#module-em_map_utils.demos.demo_map_rotate">em_map_utils.demos.demo_map_rotate</a>, <a href="generated/em_map_utils.demos.demo_map_rotate.html#module-em_map_utils.demos.demo_map_rotate">[1]</a>
+</li>
+          <li><a href="autoapi/em_map_utils/demos/ortho_surface_views/index.html#module-em_map_utils.demos.ortho_surface_views">em_map_utils.demos.ortho_surface_views</a>, <a href="generated/em_map_utils.demos.ortho_surface_views.html#module-em_map_utils.demos.ortho_surface_views">[1]</a>
+</li>
+          <li><a href="autoapi/em_map_utils/download_emdb/index.html#module-em_map_utils.download_emdb">em_map_utils.download_emdb</a>, <a href="generated/em_map_utils.download_emdb.html#module-em_map_utils.download_emdb">[1]</a>
+</li>
+          <li><a href="autoapi/em_map_utils/farm_function/index.html#module-em_map_utils.farm_function">em_map_utils.farm_function</a>, <a href="generated/em_map_utils.farm_function.html#module-em_map_utils.farm_function">[1]</a>
+</li>
+          <li><a href="autoapi/em_map_utils/filled_cuboid/index.html#module-em_map_utils.filled_cuboid">em_map_utils.filled_cuboid</a>, <a href="generated/em_map_utils.filled_cuboid.html#module-em_map_utils.filled_cuboid">[1]</a>
+</li>
+          <li><a href="autoapi/em_map_utils/filled_cylinder/index.html#module-em_map_utils.filled_cylinder">em_map_utils.filled_cylinder</a>, <a href="generated/em_map_utils.filled_cylinder.html#module-em_map_utils.filled_cylinder">[1]</a>
+</li>
+          <li><a href="autoapi/em_map_utils/filled_sphere/index.html#module-em_map_utils.filled_sphere">em_map_utils.filled_sphere</a>, <a href="generated/em_map_utils.filled_sphere.html#module-em_map_utils.filled_sphere">[1]</a>
+</li>
+          <li><a href="autoapi/em_map_utils/map_covariance/index.html#module-em_map_utils.map_covariance">em_map_utils.map_covariance</a>, <a href="generated/em_map_utils.map_covariance.html#module-em_map_utils.map_covariance">[1]</a>
+</li>
+          <li><a href="autoapi/em_map_utils/map_line_projections/index.html#module-em_map_utils.map_line_projections">em_map_utils.map_line_projections</a>, <a href="generated/em_map_utils.map_line_projections.html#module-em_map_utils.map_line_projections">[1]</a>
+</li>
+          <li><a href="autoapi/em_map_utils/map_rotate/index.html#module-em_map_utils.map_rotate">em_map_utils.map_rotate</a>, <a href="generated/em_map_utils.map_rotate.html#module-em_map_utils.map_rotate">[1]</a>
+</li>
+          <li><a href="autoapi/em_map_utils/map_threshold/index.html#module-em_map_utils.map_threshold">em_map_utils.map_threshold</a>, <a href="generated/em_map_utils.map_threshold.html#module-em_map_utils.map_threshold">[1]</a>
+</li>
+          <li><a href="autoapi/em_map_utils/structure_size_and_shape/index.html#module-em_map_utils.structure_size_and_shape">em_map_utils.structure_size_and_shape</a>, <a href="generated/em_map_utils.structure_size_and_shape.html#module-em_map_utils.structure_size_and_shape">[1]</a>
+</li>
+          <li><a href="autoapi/em_map_utils/util/index.html#module-em_map_utils.util">em_map_utils.util</a>, <a href="generated/em_map_utils.util.html#module-em_map_utils.util">[1]</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.monitoring_interval">monitoring_interval (em_map_utils.farm_function.FarmFunction attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="N" class="genindex-section">
+  <h2>N</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.num_error">num_error (em_map_utils.farm_function.FarmFunction attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.num_processed">num_processed (em_map_utils.farm_function.FarmFunction attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.num_success">num_success (em_map_utils.farm_function.FarmFunction attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.num_workers">num_workers (em_map_utils.farm_function.FarmFunction attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="O" class="genindex-section">
+  <h2>O</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.old_values">old_values (em_map_utils.farm_function.FarmFunction attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/demos/ortho_surface_views/index.html#em_map_utils.demos.ortho_surface_views.ortho_surface_views">ortho_surface_views() (in module em_map_utils.demos.ortho_surface_views)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.output_file">output_file (em_map_utils.farm_function.FarmFunction attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="P" class="genindex-section">
+  <h2>P</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/demos/demo_farm_function/index.html#em_map_utils.demos.demo_farm_function.parser">parser (in module em_map_utils.demos.demo_farm_function)</a>
+
+        <ul>
+          <li><a href="autoapi/em_map_utils/demos/demo_filled_cuboid/index.html#em_map_utils.demos.demo_filled_cuboid.parser">(in module em_map_utils.demos.demo_filled_cuboid)</a>
+</li>
+          <li><a href="autoapi/em_map_utils/demos/demo_filled_cylinder/index.html#em_map_utils.demos.demo_filled_cylinder.parser">(in module em_map_utils.demos.demo_filled_cylinder)</a>
+</li>
+          <li><a href="autoapi/em_map_utils/demos/demo_filled_sphere/index.html#em_map_utils.demos.demo_filled_sphere.parser">(in module em_map_utils.demos.demo_filled_sphere)</a>
+</li>
+          <li><a href="autoapi/em_map_utils/demos/demo_map_covariance/index.html#em_map_utils.demos.demo_map_covariance.parser">(in module em_map_utils.demos.demo_map_covariance)</a>
+</li>
+          <li><a href="autoapi/em_map_utils/demos/demo_map_line_projections/index.html#em_map_utils.demos.demo_map_line_projections.parser">(in module em_map_utils.demos.demo_map_line_projections)</a>
+</li>
+          <li><a href="autoapi/em_map_utils/demos/demo_map_rotate/index.html#em_map_utils.demos.demo_map_rotate.parser">(in module em_map_utils.demos.demo_map_rotate)</a>
+</li>
+          <li><a href="autoapi/em_map_utils/filled_cuboid/index.html#em_map_utils.filled_cuboid.parser">(in module em_map_utils.filled_cuboid)</a>
+</li>
+          <li><a href="autoapi/em_map_utils/filled_cylinder/index.html#em_map_utils.filled_cylinder.parser">(in module em_map_utils.filled_cylinder)</a>
+</li>
+          <li><a href="autoapi/em_map_utils/filled_sphere/index.html#em_map_utils.filled_sphere.parser">(in module em_map_utils.filled_sphere)</a>
+</li>
+          <li><a href="autoapi/em_map_utils/map_covariance/index.html#em_map_utils.map_covariance.parser">(in module em_map_utils.map_covariance)</a>
+</li>
+          <li><a href="autoapi/em_map_utils/map_line_projections/index.html#em_map_utils.map_line_projections.parser">(in module em_map_utils.map_line_projections)</a>
+</li>
+          <li><a href="autoapi/em_map_utils/map_rotate/index.html#em_map_utils.map_rotate.parser">(in module em_map_utils.map_rotate)</a>
+</li>
+          <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.parser">(in module em_map_utils.map_threshold)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/map_line_projections/index.html#em_map_utils.map_line_projections.MapLineProjections.PERM_IDX">PERM_IDX (em_map_utils.map_line_projections.MapLineProjections attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_covariance/index.html#em_map_utils.map_covariance.MapCovariance.phys_scale_eigenvectors">phys_scale_eigenvectors() (em_map_utils.map_covariance.MapCovariance method)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_line_projections/index.html#em_map_utils.map_line_projections.MapLineProjections.plot">plot() (em_map_utils.map_line_projections.MapLineProjections method)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/demos/demo_map_covariance/index.html#em_map_utils.demos.demo_map_covariance.plot_back_rotated_cuboid">plot_back_rotated_cuboid() (in module em_map_utils.demos.demo_map_covariance)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.MapHistogram.plot_bg_histogram">plot_bg_histogram() (em_map_utils.map_threshold.MapHistogram method)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/demos/demo_filled_cuboid/index.html#em_map_utils.demos.demo_filled_cuboid.plot_filled_cuboid">plot_filled_cuboid() (in module em_map_utils.demos.demo_filled_cuboid)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/demos/demo_filled_cylinder/index.html#em_map_utils.demos.demo_filled_cylinder.plot_filled_cylinder">plot_filled_cylinder() (in module em_map_utils.demos.demo_filled_cylinder)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/demos/demo_filled_sphere/index.html#em_map_utils.demos.demo_filled_sphere.plot_filled_sphere">plot_filled_sphere() (in module em_map_utils.demos.demo_filled_sphere)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/demos/demo_map_line_projections/index.html#em_map_utils.demos.demo_map_line_projections.plot_line_projections">plot_line_projections() (in module em_map_utils.demos.demo_map_line_projections)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.MapHistogram.plot_map_cdf">plot_map_cdf() (em_map_utils.map_threshold.MapHistogram method)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.MapHistogram.plot_map_histogram">plot_map_histogram() (em_map_utils.map_threshold.MapHistogram method)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/demos/demo_map_rotate/index.html#em_map_utils.demos.demo_map_rotate.plot_rotated_map">plot_rotated_map() (in module em_map_utils.demos.demo_map_rotate)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.process_queue">process_queue (em_map_utils.farm_function.FarmFunction attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_line_projections/index.html#em_map_utils.map_line_projections.MapLineProjections.prof_fit">prof_fit (em_map_utils.map_line_projections.MapLineProjections attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="R" class="genindex-section">
+  <h2>R</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/map_line_projections/index.html#em_map_utils.map_line_projections.MapLineProjections.range">range (em_map_utils.map_line_projections.MapLineProjections attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/download_emdb/index.html#em_map_utils.download_emdb.read_emdb_ids_from">read_emdb_ids_from() (in module em_map_utils.download_emdb)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/structure_size_and_shape/index.html#em_map_utils.structure_size_and_shape.read_map_list_from">read_map_list_from() (in module em_map_utils.structure_size_and_shape)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.resume">resume (em_map_utils.farm_function.FarmFunction attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.retry">retry (em_map_utils.farm_function.FarmFunction attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_covariance/index.html#em_map_utils.map_covariance.MapCovariance.RHAS_ALL">RHAS_ALL (em_map_utils.map_covariance.MapCovariance attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_covariance/index.html#em_map_utils.map_covariance.MapCovariance.RHAS_BASE">RHAS_BASE (em_map_utils.map_covariance.MapCovariance attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_covariance/index.html#em_map_utils.map_covariance.MapCovariance.RHAS_XYZ">RHAS_XYZ (em_map_utils.map_covariance.MapCovariance attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_covariance/index.html#em_map_utils.map_covariance.MapCovariance.RHAS_ZYX">RHAS_ZYX (em_map_utils.map_covariance.MapCovariance attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="S" class="genindex-section">
+  <h2>S</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/util/index.html#em_map_utils.util.save_map">save_map() (in module em_map_utils.util)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_line_projections/index.html#em_map_utils.map_line_projections.MapLineProjections.sigma">sigma (em_map_utils.map_line_projections.MapLineProjections attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.MapHistogram.sigma_factor">sigma_factor (em_map_utils.map_threshold.MapHistogram attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/map_covariance/index.html#em_map_utils.map_covariance.MapCovariance.sign_align_eigenvectors">sign_align_eigenvectors() (em_map_utils.map_covariance.MapCovariance static method)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/structure_size_and_shape/index.html#em_map_utils.structure_size_and_shape.structure_size_and_shape">structure_size_and_shape() (in module em_map_utils.structure_size_and_shape)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.success_queue">success_queue (em_map_utils.farm_function.FarmFunction attribute)</a>
+</li>
+        <li><a href="autoapi/em_map_utils/map_line_projections/index.html#em_map_utils.map_line_projections.MapLineProjections.sum">sum (em_map_utils.map_line_projections.MapLineProjections attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="T" class="genindex-section">
+  <h2>T</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.threshold_map">threshold_map() (in module em_map_utils.map_threshold)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/map_line_projections/index.html#em_map_utils.map_line_projections.MapLineProjections.two_sigma">two_sigma (em_map_utils.map_line_projections.MapLineProjections attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="V" class="genindex-section">
+  <h2>V</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.values">values (em_map_utils.farm_function.FarmFunction attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/map_line_projections/index.html#em_map_utils.map_line_projections.MapLineProjections.variance">variance (em_map_utils.map_line_projections.MapLineProjections attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="W" class="genindex-section">
+  <h2>W</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="autoapi/em_map_utils/farm_function/index.html#em_map_utils.farm_function.FarmFunction.write_to_files">write_to_files() (em_map_utils.farm_function.FarmFunction method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Ardan Patwardhan
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=e3a6060d"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>
