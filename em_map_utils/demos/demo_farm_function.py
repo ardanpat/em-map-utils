@@ -9,7 +9,7 @@ demo_farm_function.py
     percent of the time.
 """
 import argparse
-import multiprocessing as mp
+import multiprocess as mp
 import random
 import time
 from ..farm_function import FarmFunction
@@ -28,8 +28,9 @@ def dummy(x, y, z):
     return  random.random() < 0.5, { 'x': random.randint(1,10), 'y': 'This is a test', 'z': random.random() }
 
 if __name__ == '__main__':
-    mp.set_start_method("fork", force=True)
-    mp.freeze_support()
+    mp.set_start_method("spawn")
+    # mp.set_start_method("fork", force=True)
+    # mp.freeze_support()
     parser = argparse.ArgumentParser(
         description='Run multiple instances of function which fails randomly and generates random output.')
     parser.add_argument('-f', '--file_root', metavar='FILE', type=str, default='multiproc',
@@ -44,6 +45,8 @@ if __name__ == '__main__':
                         help='Retry items that failed. Only works with the --resume flag.')
     parser.add_argument('-i', '--ignore_new_values', action='store_true',
                         help='Just resume from old database and do not generate new values. Must be used with --resume flag.')
+    parser.add_argument( '--timeout', metavar='TTT', type=int, default=15,
+                        help='Max time to wait for function execution.')
     args = parser.parse_args()
     print('Starting test')
     print(f'MP start method: {mp.get_start_method()}')
@@ -51,6 +54,8 @@ if __name__ == '__main__':
     val = [] if args.resume and args.ignore_new_values else list(range(args.num_values))
     ff = FarmFunction(dummy, val, [1], {'z': 0},
                       num_workers=args.num_workers,
+                      timeout=args.timeout,
                       file_root=args.file_root,
                       resume=args.resume,
                       retry=args.retry)
+

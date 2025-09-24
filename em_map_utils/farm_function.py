@@ -9,12 +9,14 @@ farm_function.py
     and collecting any results in a JSON file.
 """
 
+import gc
 import json
 import logging
-import multiprocessing as mp
+import multiprocess as mp
 import random
 import sqlite3 as sql
 import time
+from func_timeout import func_timeout, FunctionTimedOut
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
@@ -34,6 +36,7 @@ class FarmFunction:
                  num_workers=2,
                  max_tries=2,
                  monitoring_interval=5,
+                 timeout = 15 * 60,
                  file_root = "dummy",
                  resume = False,
                  retry = False):
@@ -57,7 +60,10 @@ class FarmFunction:
             CPUs.
         :param max_tries: Number of attempts to retry the function.
         :param monitoring_interval: How often (in seconds) to check the
-            progress of the worker processes.
+            progress of the worker processes. Garbage collection is
+            performed at each interval.
+        :param timeout: How long to wait for the worker processes to
+            finish.
         :param file_root: The root of the database and output files.
         :param resume: If True, the database and processes are loaded
             from file and resumed.
@@ -73,6 +79,7 @@ class FarmFunction:
         self.num_workers = max( 1, min(num_workers, FarmFunction.max_cpu))
         self.max_tries = max_tries
         self.monitoring_interval = monitoring_interval
+        self.timeout = timeout
 
         self.file_root = file_root
         self.db_name = f'{self.file_root}.db'
@@ -111,10 +118,17 @@ class FarmFunction:
         self.values.extend(self.old_values)
         self.num_values = len(self.values)
 
-        mp.Process(target=self.__monitor).start()
+        processes = []
+        processes.append(mp.Process(target=self.__monitor))
 
         for i in range(self.num_workers):
-            mp.Process(target=self.__worker).start()
+            processes.append(mp.Process(target=self.__worker))
+
+        for p in processes:
+            p.start()
+
+        for p in processes:
+            p.join()
 
 
     def __monitor(self):
@@ -128,6 +142,7 @@ class FarmFunction:
         """
         while self.num_processed.value < self.num_values:
             time.sleep(self.monitoring_interval)
+            gc.collect()
 
         logger.debug(f'All values processed. Sending termination signal to processes.')
         for _ in range(self.num_workers):
@@ -189,13 +204,16 @@ class FarmFunction:
             result = None
 
             try:
-                y = self.f(x[1], *self.args, **self.kwargs)
+                y = func_timeout(self.timeout, self.f, args = (x[1], *self.args), kwargs = self.kwargs)
+                # y = self.f(x[1], *self.args, **self.kwargs)
                 if isinstance(y, tuple):
                     status = y[0]
                     if len(y) > 1:
                         result = y[1]
                 else:
                     status = y
+            except FunctionTimedOut:
+                logger.error(f'Function timed out for {cur_proc} after {self.timeout} seconds.')
             except Exception as e:
                 logger.error(f'Exception raised evaluating function f: {e}, type: {type(e)}')
 

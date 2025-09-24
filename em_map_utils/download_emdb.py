@@ -8,7 +8,7 @@ download_emdb.py
     Functions for downloading EMDB maps and other data from EMDB sites.
 """
 import argparse
-import multiprocessing as mp
+import multiprocess as mp
 import re
 import requests
 from http import HTTPStatus
@@ -139,8 +139,9 @@ def main():
     download EMDB maps.
     :return:
     """
-    mp.set_start_method("fork", force=True)
-    mp.freeze_support()
+    mp.set_start_method("spawn")
+    # mp.set_start_method("fork", force=True)
+    # mp.freeze_support()
 
     parser = argparse.ArgumentParser(
         description='Download EMDB map (-e option) or maps (-l option).')
@@ -165,6 +166,8 @@ def main():
                         help='File stem name excluding suffix to use for output json and database. Will be prefixed with download_dir. Only relevant with -l option.')
     parser.add_argument('--retry', action='store_true',
                         help='Retry items that failed. Only works with the --resume flag. Only relevant with -l option.')
+    parser.add_argument('--timeout', metavar='TTT', type=int, default=60*60,
+                        help='Max time to wait for function execution.')
     args = parser.parse_args()
 
     if args.emdb_list is None:
@@ -182,6 +185,7 @@ def main():
                           num_workers=args.num_workers,
                           max_tries=args.max_tries,
                           monitoring_interval=args.monitoring_interval,
+                          timeout=args.timeout,
                           file_root=file_root,
                           resume=args.resume,
                           retry=args.retry)

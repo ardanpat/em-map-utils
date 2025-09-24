@@ -17,7 +17,7 @@ import csv
 import logging
 import matplotlib.pyplot as plt
 import mrcfile
-import multiprocessing as mp
+import multiprocess as mp
 import numpy as np
 from pathlib import Path
 import re
@@ -162,8 +162,9 @@ def structure_size_and_shape(entry_file, aligned_file=None, plot_profile=True, c
                    'asphericity': asph }
 
 def main():
-    mp.set_start_method("fork", force=True)
-    mp.freeze_support()
+    mp.set_start_method("spawn")
+    # mp.set_start_method("fork", force=True)
+    # mp.freeze_support()
 
     parser = argparse.ArgumentParser(
         description='Determine the size and shape of structure.')
@@ -187,6 +188,8 @@ def main():
                         help='Do not overwrite existing files. Instead try and resume the processing using the database.')
     parser.add_argument('--retry', action='store_true',
                         help='Retry failed items when using the --resume flag. Only relevant with -l option.')
+    parser.add_argument('--timeout', metavar='TTT', type=int, default=15,
+                        help='Max time to wait for function execution.')
     args = parser.parse_args()
 
     if not args.list:
@@ -222,6 +225,7 @@ def main():
                           num_workers=args.num_workers,
                           max_tries=args.max_tries,
                           monitoring_interval=args.monitoring_interval,
+                          timeout=args.timeout,
                           file_root=file_root,
                           resume=args.resume,
                           retry=args.retry)
