@@ -46,7 +46,7 @@ Module Contents
 
 .. py:data:: logger
 
-.. py:class:: FarmFunction(f, values, args=[], kwargs={}, num_workers=2, max_tries=2, monitoring_interval=5, file_root='dummy', resume=False, retry=False)
+.. py:class:: FarmFunction(f, values, args=[], kwargs={}, num_workers=2, max_tries=2, monitoring_interval=5, timeout=15 * 60, file_root='dummy', resume=False, retry=False)
 
    Run multiple processes of a function f(v, args, kwargs), mapping
    v over a list of values and collecting the results in a JSON file.
@@ -82,6 +82,11 @@ Module Contents
 
    .. py:attribute:: monitoring_interval
       :value: 5
+
+
+
+   .. py:attribute:: timeout
+      :value: 900
 
 
 

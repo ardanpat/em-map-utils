@@ -29,6 +29,7 @@ Submodules
    /autoapi/em_map_utils/demos/demo_filled_sphere/index
    /autoapi/em_map_utils/demos/demo_map_covariance/index
    /autoapi/em_map_utils/demos/demo_map_line_projections/index
+   /autoapi/em_map_utils/demos/demo_map_resample/index
    /autoapi/em_map_utils/demos/demo_map_rotate/index
    /autoapi/em_map_utils/demos/ortho_surface_views/index
 

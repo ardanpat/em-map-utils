@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2025.07.19 -->
-        <title>em_map_utils.map_threshold - em_map_utils 0.0.2 documentation</title>
+        <title>em_map_utils.map_threshold - em_map_utils 0.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=25af2a20" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
@@ -168,7 +168,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">em_map_utils 0.0.2 documentation</div></a>
+      <a href="../index.html"><div class="brand">em_map_utils 0.1.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -191,7 +191,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
-  <span class="sidebar-brand-text">em_map_utils 0.0.2 documentation</span>
+  <span class="sidebar-brand-text">em_map_utils 0.1.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -209,6 +209,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../autoapi/em_map_utils/demos/demo_filled_sphere/index.html">em_map_utils.demos.demo_filled_sphere</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../autoapi/em_map_utils/demos/demo_map_covariance/index.html">em_map_utils.demos.demo_map_covariance</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../autoapi/em_map_utils/demos/demo_map_line_projections/index.html">em_map_utils.demos.demo_map_line_projections</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/em_map_utils/demos/demo_map_resample/index.html">em_map_utils.demos.demo_map_resample</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../autoapi/em_map_utils/demos/demo_map_rotate/index.html">em_map_utils.demos.demo_map_rotate</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../autoapi/em_map_utils/demos/ortho_surface_views/index.html">em_map_utils.demos.ortho_surface_views</a></li>
 </ul>
@@ -220,6 +221,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../autoapi/em_map_utils/filled_sphere/index.html">em_map_utils.filled_sphere</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../autoapi/em_map_utils/map_covariance/index.html">em_map_utils.map_covariance</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../autoapi/em_map_utils/map_line_projections/index.html">em_map_utils.map_line_projections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../autoapi/em_map_utils/map_resample/index.html">em_map_utils.map_resample</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../autoapi/em_map_utils/map_rotate/index.html">em_map_utils.map_rotate</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../autoapi/em_map_utils/map_threshold/index.html">em_map_utils.map_threshold</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../autoapi/em_map_utils/structure_size_and_shape/index.html">em_map_utils.structure_size_and_shape</a></li>
@@ -289,8 +291,11 @@
 <div class="table-wrapper autosummary longtable docutils container">
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="../autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.threshold_map" title="em_map_utils.map_threshold.threshold_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">threshold_map</span></code></a>(map_grid)</p></td>
-<td><p>Determine a threshold level for the map which is suitable for visualisation. A two-step procedure is used. First the background sigma in the map is estimated and a threshold is calculated based on this. The map is thresholded and then orthogonal line projection profiles are calculated. A second threshold is calculated based on the width of these profiles. The threshold ultimately selected is higher of the two values. Note: This algorithm exploits the characteristics of cryoEM maps     and may not work on synthetic maps.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.count_voxels_matching_criteria" title="em_map_utils.map_threshold.count_voxels_matching_criteria"><code class="xref py py-obj docutils literal notranslate"><span class="pre">count_voxels_matching_criteria</span></code></a>(map, ...)</p></td>
+<td><p>Count the number of voxels in the map that are within the dimensions of a centred cuboid and with map values above a threshold.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../autoapi/em_map_utils/map_threshold/index.html#em_map_utils.map_threshold.threshold_map" title="em_map_utils.map_threshold.threshold_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">threshold_map</span></code></a>(map_grid)</p></td>
+<td><p>Determine a threshold level for the map which is suitable for visualisation. A two-step procedure is used. First the background sigma in the map is estimated and a threshold is calculated based on this. The map is thresholded and then orthogonal line projection profiles are calculated. A second threshold is calculated based on the width of these profiles. These two values are averaged to a final value. Note: This algorithm exploits the characteristics of cryoEM maps     and may not work on synthetic maps.</p></td>
 </tr>
 </tbody>
 </table>
@@ -318,7 +323,7 @@
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2025, Ardan Patwardhan
+                Copyright &#169; 2025-2026, Ardan Patwardhan
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -338,7 +343,7 @@
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=e3a6060d"></script>
+</div><script src="../_static/documentation_options.js?v=01f34227"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>

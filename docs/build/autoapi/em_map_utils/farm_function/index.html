@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="em_map_utils.filled_cuboid" href="../filled_cuboid/index.html" /><link rel="prev" title="em_map_utils.download_emdb" href="../download_emdb/index.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2025.07.19 -->
-        <title>em_map_utils.farm_function - em_map_utils 0.0.2 documentation</title>
+        <title>em_map_utils.farm_function - em_map_utils 0.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=25af2a20" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
@@ -168,7 +168,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">em_map_utils 0.0.2 documentation</div></a>
+      <a href="../../../index.html"><div class="brand">em_map_utils 0.1.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -191,7 +191,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
   
-  <span class="sidebar-brand-text">em_map_utils 0.0.2 documentation</span>
+  <span class="sidebar-brand-text">em_map_utils 0.1.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -209,6 +209,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../demos/demo_filled_sphere/index.html">em_map_utils.demos.demo_filled_sphere</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../demos/demo_map_covariance/index.html">em_map_utils.demos.demo_map_covariance</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../demos/demo_map_line_projections/index.html">em_map_utils.demos.demo_map_line_projections</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../demos/demo_map_resample/index.html">em_map_utils.demos.demo_map_resample</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../demos/demo_map_rotate/index.html">em_map_utils.demos.demo_map_rotate</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../demos/ortho_surface_views/index.html">em_map_utils.demos.ortho_surface_views</a></li>
 </ul>
@@ -220,6 +221,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../filled_sphere/index.html">em_map_utils.filled_sphere</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../map_covariance/index.html">em_map_utils.map_covariance</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../map_line_projections/index.html">em_map_utils.map_line_projections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../map_resample/index.html">em_map_utils.map_resample</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../map_rotate/index.html">em_map_utils.map_rotate</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../map_threshold/index.html">em_map_utils.map_threshold</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../structure_size_and_shape/index.html">em_map_utils.structure_size_and_shape</a></li>
@@ -320,7 +322,7 @@ and collecting any results in a JSON file.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="em_map_utils.farm_function.FarmFunction">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">em_map_utils.farm_function.</span></span><span class="sig-name descname"><span class="pre">FarmFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_workers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_tries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">monitoring_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dummy'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resume</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#em_map_utils.farm_function.FarmFunction" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">em_map_utils.farm_function.</span></span><span class="sig-name descname"><span class="pre">FarmFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_workers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_tries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">monitoring_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span> <span class="pre">*</span> <span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dummy'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resume</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#em_map_utils.farm_function.FarmFunction" title="Link to this definition">¶</a></dt>
 <dd><p>Run multiple processes of a function f(v, args, kwargs), mapping
 v over a list of values and collecting the results in a JSON file.</p>
 <p>In contrast with the Pool function of multiprocessing, this class
@@ -363,6 +365,11 @@ can attempt multiple tries of the function before giving up.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="em_map_utils.farm_function.FarmFunction.monitoring_interval">
 <span class="sig-name descname"><span class="pre">monitoring_interval</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#em_map_utils.farm_function.FarmFunction.monitoring_interval" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="em_map_utils.farm_function.FarmFunction.timeout">
+<span class="sig-name descname"><span class="pre">timeout</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">900</span></em><a class="headerlink" href="#em_map_utils.farm_function.FarmFunction.timeout" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -497,7 +504,7 @@ dump and loaded back into a dictionary.</p>
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2025, Ardan Patwardhan
+                Copyright &#169; 2025-2026, Ardan Patwardhan
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -537,6 +544,7 @@ dump and loaded back into a dictionary.</p>
 <li><a class="reference internal" href="#em_map_utils.farm_function.FarmFunction.num_workers"><code class="docutils literal notranslate"><span class="pre">FarmFunction.num_workers</span></code></a></li>
 <li><a class="reference internal" href="#em_map_utils.farm_function.FarmFunction.max_tries"><code class="docutils literal notranslate"><span class="pre">FarmFunction.max_tries</span></code></a></li>
 <li><a class="reference internal" href="#em_map_utils.farm_function.FarmFunction.monitoring_interval"><code class="docutils literal notranslate"><span class="pre">FarmFunction.monitoring_interval</span></code></a></li>
+<li><a class="reference internal" href="#em_map_utils.farm_function.FarmFunction.timeout"><code class="docutils literal notranslate"><span class="pre">FarmFunction.timeout</span></code></a></li>
 <li><a class="reference internal" href="#em_map_utils.farm_function.FarmFunction.file_root"><code class="docutils literal notranslate"><span class="pre">FarmFunction.file_root</span></code></a></li>
 <li><a class="reference internal" href="#em_map_utils.farm_function.FarmFunction.db_name"><code class="docutils literal notranslate"><span class="pre">FarmFunction.db_name</span></code></a></li>
 <li><a class="reference internal" href="#em_map_utils.farm_function.FarmFunction.output_file"><code class="docutils literal notranslate"><span class="pre">FarmFunction.output_file</span></code></a></li>
@@ -567,7 +575,7 @@ dump and loaded back into a dictionary.</p>
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=e3a6060d"></script>
+</div><script src="../../../_static/documentation_options.js?v=01f34227"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>

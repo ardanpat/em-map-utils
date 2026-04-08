@@ -16,5 +16,6 @@ em\_map\_utils.demos
    demo_filled_sphere
    demo_map_covariance
    demo_map_line_projections
+   demo_map_resample
    demo_map_rotate
    ortho_surface_views

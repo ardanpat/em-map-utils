@@ -27,7 +27,7 @@ Functions
 Module Contents
 ---------------
 
-.. py:function:: save_map(outfile, map_grid, mrc)
+.. py:function:: save_map(outfile, map_grid, mrc, voxel_size=None)
 
    Save grid as a mrc file copying key header values from an existing
    mrc file.
@@ -35,6 +35,8 @@ Module Contents
    :param outfile: Name of file to save map to.
    :param map_grid: Map grid to save.
    :param mrc: MRC file with header information to copy.
+   :param voxel_size: Optional voxel size that overrides the value from
+       the input mrc file.
    :return: No return value.
 
 

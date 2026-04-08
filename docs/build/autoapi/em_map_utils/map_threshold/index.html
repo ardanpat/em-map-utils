@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="em_map_utils.structure_size_and_shape" href="../structure_size_and_shape/index.html" /><link rel="prev" title="em_map_utils.map_rotate" href="../map_rotate/index.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2025.07.19 -->
-        <title>em_map_utils.map_threshold - em_map_utils 0.0.2 documentation</title>
+        <title>em_map_utils.map_threshold - em_map_utils 0.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=25af2a20" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
@@ -168,7 +168,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">em_map_utils 0.0.2 documentation</div></a>
+      <a href="../../../index.html"><div class="brand">em_map_utils 0.1.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -191,7 +191,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
   
-  <span class="sidebar-brand-text">em_map_utils 0.0.2 documentation</span>
+  <span class="sidebar-brand-text">em_map_utils 0.1.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -209,6 +209,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../demos/demo_filled_sphere/index.html">em_map_utils.demos.demo_filled_sphere</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../demos/demo_map_covariance/index.html">em_map_utils.demos.demo_map_covariance</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../demos/demo_map_line_projections/index.html">em_map_utils.demos.demo_map_line_projections</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../demos/demo_map_resample/index.html">em_map_utils.demos.demo_map_resample</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../demos/demo_map_rotate/index.html">em_map_utils.demos.demo_map_rotate</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../demos/ortho_surface_views/index.html">em_map_utils.demos.ortho_surface_views</a></li>
 </ul>
@@ -220,6 +221,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../filled_sphere/index.html">em_map_utils.filled_sphere</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../map_covariance/index.html">em_map_utils.map_covariance</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../map_line_projections/index.html">em_map_utils.map_line_projections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../map_resample/index.html">em_map_utils.map_resample</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../map_rotate/index.html">em_map_utils.map_rotate</a></li>
 <li class="toctree-l3 current current-page"><a class="current reference internal" href="#">em_map_utils.map_threshold</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../structure_size_and_shape/index.html">em_map_utils.structure_size_and_shape</a></li>
@@ -318,7 +320,10 @@
 <div class="table-wrapper autosummary longtable docutils container">
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#em_map_utils.map_threshold.threshold_map" title="em_map_utils.map_threshold.threshold_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">threshold_map</span></code></a>(map_grid)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#em_map_utils.map_threshold.count_voxels_matching_criteria" title="em_map_utils.map_threshold.count_voxels_matching_criteria"><code class="xref py py-obj docutils literal notranslate"><span class="pre">count_voxels_matching_criteria</span></code></a>(map, threshold, cuboid_dims)</p></td>
+<td><p>Count the number of voxels in the map that are within the dimensions</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#em_map_utils.map_threshold.threshold_map" title="em_map_utils.map_threshold.threshold_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">threshold_map</span></code></a>(map_grid)</p></td>
 <td><p>Determine a threshold level for the map which is suitable for</p></td>
 </tr>
 </tbody>
@@ -334,17 +339,20 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="em_map_utils.map_threshold.MapHistogram">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">em_map_utils.map_threshold.</span></span><span class="sig-name descname"><span class="pre">MapHistogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">map_grid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">histogram_bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#em_map_utils.map_threshold.MapHistogram" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">em_map_utils.map_threshold.</span></span><span class="sig-name descname"><span class="pre">MapHistogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">map_grid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">histogram_bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_histogram</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#em_map_utils.map_threshold.MapHistogram" title="Link to this definition">¶</a></dt>
 <dd><p>Class to represent the map histogram, the related cumulative
 distribution function and histogram of the background (noise) in a
 map.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="em_map_utils.map_threshold.MapHistogram.plot_map_histogram">
-<span class="sig-name descname"><span class="pre">plot_map_histogram</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#em_map_utils.map_threshold.MapHistogram.plot_map_histogram" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">plot_map_histogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#em_map_utils.map_threshold.MapHistogram.plot_map_histogram" title="Link to this definition">¶</a></dt>
 <dd><p>Plot the map histogram.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A tuple with the figure and axes objects.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>log_y</strong> – If True, log scale the y-axis of the map histogram.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple with the figure and axes objects.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -362,11 +370,14 @@ map.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="em_map_utils.map_threshold.MapHistogram.plot_bg_histogram">
-<span class="sig-name descname"><span class="pre">plot_bg_histogram</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#em_map_utils.map_threshold.MapHistogram.plot_bg_histogram" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">plot_bg_histogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#em_map_utils.map_threshold.MapHistogram.plot_bg_histogram" title="Link to this definition">¶</a></dt>
 <dd><p>Plots the background histogram.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A tuple with the figure and axes objects.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>log_y</strong> – If True, log scale the y-axis of the map histogram.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple with the figure and axes objects.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -387,13 +398,13 @@ map.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="em_map_utils.map_threshold.MapHistogram.map_hist_max_idx">
-<span class="sig-name descname"><span class="pre">map_hist_max_idx</span></span><a class="headerlink" href="#em_map_utils.map_threshold.MapHistogram.map_hist_max_idx" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="em_map_utils.map_threshold.MapHistogram.map_hist_peak_idx">
+<span class="sig-name descname"><span class="pre">map_hist_peak_idx</span></span><a class="headerlink" href="#em_map_utils.map_threshold.MapHistogram.map_hist_peak_idx" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="em_map_utils.map_threshold.MapHistogram.map_hist_max_val">
-<span class="sig-name descname"><span class="pre">map_hist_max_val</span></span><a class="headerlink" href="#em_map_utils.map_threshold.MapHistogram.map_hist_max_val" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="em_map_utils.map_threshold.MapHistogram.map_hist_peak_val">
+<span class="sig-name descname"><span class="pre">map_hist_peak_val</span></span><a class="headerlink" href="#em_map_utils.map_threshold.MapHistogram.map_hist_peak_val" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -454,6 +465,27 @@ map.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="em_map_utils.map_threshold.count_voxels_matching_criteria">
+<span class="sig-prename descclassname"><span class="pre">em_map_utils.map_threshold.</span></span><span class="sig-name descname"><span class="pre">count_voxels_matching_criteria</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cuboid_dims</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#em_map_utils.map_threshold.count_voxels_matching_criteria" title="Link to this definition">¶</a></dt>
+<dd><p>Count the number of voxels in the map that are within the dimensions
+of a centred cuboid and with map values above a threshold.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>map</strong> – Input map.</p></li>
+<li><p><strong>threshold</strong> – Threshold to count voxels with.</p></li>
+<li><p><strong>cuboid_dims</strong> – Only count voxels within a centred cuboid with
+these dimensions.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Count of voxels within the cuboid and with map values
+above a threshold.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="em_map_utils.map_threshold.threshold_map">
 <span class="sig-prename descclassname"><span class="pre">em_map_utils.map_threshold.</span></span><span class="sig-name descname"><span class="pre">threshold_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">map_grid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#em_map_utils.map_threshold.threshold_map" title="Link to this definition">¶</a></dt>
 <dd><p>Determine a threshold level for the map which is suitable for
@@ -461,8 +493,8 @@ visualisation. A two-step procedure is used. First the background
 sigma in the map is estimated and a threshold is calculated based
 on this. The map is thresholded and then orthogonal line projection
 profiles are calculated. A second threshold is calculated based on
-the width of these profiles. The threshold ultimately selected is
-higher of the two values.
+the width of these profiles. These two values are averaged to a
+final value.
 Note: This algorithm exploits the characteristics of cryoEM maps</p>
 <blockquote>
 <div><p>and may not work on synthetic maps.</p>
@@ -515,7 +547,7 @@ the histogram object and the line profile object.</p>
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2025, Ardan Patwardhan
+                Copyright &#169; 2025-2026, Ardan Patwardhan
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -554,8 +586,8 @@ the histogram object and the line profile object.</p>
 <li><a class="reference internal" href="#em_map_utils.map_threshold.MapHistogram.sigma_factor"><code class="docutils literal notranslate"><span class="pre">MapHistogram.sigma_factor</span></code></a></li>
 <li><a class="reference internal" href="#em_map_utils.map_threshold.MapHistogram.bin_width"><code class="docutils literal notranslate"><span class="pre">MapHistogram.bin_width</span></code></a></li>
 <li><a class="reference internal" href="#em_map_utils.map_threshold.MapHistogram.cum_dist_func"><code class="docutils literal notranslate"><span class="pre">MapHistogram.cum_dist_func</span></code></a></li>
-<li><a class="reference internal" href="#em_map_utils.map_threshold.MapHistogram.map_hist_max_idx"><code class="docutils literal notranslate"><span class="pre">MapHistogram.map_hist_max_idx</span></code></a></li>
-<li><a class="reference internal" href="#em_map_utils.map_threshold.MapHistogram.map_hist_max_val"><code class="docutils literal notranslate"><span class="pre">MapHistogram.map_hist_max_val</span></code></a></li>
+<li><a class="reference internal" href="#em_map_utils.map_threshold.MapHistogram.map_hist_peak_idx"><code class="docutils literal notranslate"><span class="pre">MapHistogram.map_hist_peak_idx</span></code></a></li>
+<li><a class="reference internal" href="#em_map_utils.map_threshold.MapHistogram.map_hist_peak_val"><code class="docutils literal notranslate"><span class="pre">MapHistogram.map_hist_peak_val</span></code></a></li>
 <li><a class="reference internal" href="#em_map_utils.map_threshold.MapHistogram.map_mean"><code class="docutils literal notranslate"><span class="pre">MapHistogram.map_mean</span></code></a></li>
 <li><a class="reference internal" href="#em_map_utils.map_threshold.MapHistogram.map_var"><code class="docutils literal notranslate"><span class="pre">MapHistogram.map_var</span></code></a></li>
 <li><a class="reference internal" href="#em_map_utils.map_threshold.MapHistogram.map_sigma"><code class="docutils literal notranslate"><span class="pre">MapHistogram.map_sigma</span></code></a></li>
@@ -569,6 +601,7 @@ the histogram object and the line profile object.</p>
 <li><a class="reference internal" href="#em_map_utils.map_threshold.MapHistogram.bg_threshold"><code class="docutils literal notranslate"><span class="pre">MapHistogram.bg_threshold</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#em_map_utils.map_threshold.count_voxels_matching_criteria"><code class="docutils literal notranslate"><span class="pre">count_voxels_matching_criteria()</span></code></a></li>
 <li><a class="reference internal" href="#em_map_utils.map_threshold.threshold_map"><code class="docutils literal notranslate"><span class="pre">threshold_map()</span></code></a></li>
 <li><a class="reference internal" href="#em_map_utils.map_threshold.parser"><code class="docutils literal notranslate"><span class="pre">parser</span></code></a></li>
 </ul>
@@ -584,7 +617,7 @@ the histogram object and the line profile object.</p>
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=e3a6060d"></script>
+</div><script src="../../../_static/documentation_options.js?v=01f34227"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>

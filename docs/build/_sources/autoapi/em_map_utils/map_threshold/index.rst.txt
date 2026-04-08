@@ -46,6 +46,7 @@ Functions
 
 .. autoapisummary::
 
+   em_map_utils.map_threshold.count_voxels_matching_criteria
    em_map_utils.map_threshold.threshold_map
 
 
@@ -54,17 +55,18 @@ Module Contents
 
 .. py:data:: logger
 
-.. py:class:: MapHistogram(map_grid, histogram_bins=5000, sigma_factor=3.0)
+.. py:class:: MapHistogram(map_grid, histogram_bins=5000, sigma_factor=3.0, log_histogram=False)
 
    Class to represent the map histogram, the related cumulative
    distribution function and histogram of the background (noise) in a
    map.
 
 
-   .. py:method:: plot_map_histogram()
+   .. py:method:: plot_map_histogram(log_y=True)
 
       Plot the map histogram.
 
+      :param log_y: If True, log scale the y-axis of the map histogram.
       :return: A tuple with the figure and axes objects.
 
 
@@ -77,10 +79,11 @@ Module Contents
 
 
 
-   .. py:method:: plot_bg_histogram()
+   .. py:method:: plot_bg_histogram(log_y=True)
 
       Plots the background histogram.
 
+      :param log_y: If True, log scale the y-axis of the map histogram.
       :return: A tuple with the figure and axes objects.
 
 
@@ -96,10 +99,10 @@ Module Contents
    .. py:attribute:: cum_dist_func
 
 
-   .. py:attribute:: map_hist_max_idx
+   .. py:attribute:: map_hist_peak_idx
 
 
-   .. py:attribute:: map_hist_max_val
+   .. py:attribute:: map_hist_peak_val
 
 
    .. py:attribute:: map_mean
@@ -135,6 +138,19 @@ Module Contents
    .. py:attribute:: bg_threshold
 
 
+.. py:function:: count_voxels_matching_criteria(map, threshold, cuboid_dims)
+
+   Count the number of voxels in the map that are within the dimensions
+   of a centred cuboid and with map values above a threshold.
+
+   :param map: Input map.
+   :param threshold: Threshold to count voxels with.
+   :param cuboid_dims: Only count voxels within a centred cuboid with
+       these dimensions.
+   :return: Count of voxels within the cuboid and with map values
+       above a threshold.
+
+
 .. py:function:: threshold_map(map_grid)
 
    Determine a threshold level for the map which is suitable for
@@ -142,8 +158,8 @@ Module Contents
    sigma in the map is estimated and a threshold is calculated based
    on this. The map is thresholded and then orthogonal line projection
    profiles are calculated. A second threshold is calculated based on
-   the width of these profiles. The threshold ultimately selected is
-   higher of the two values.
+   the width of these profiles. These two values are averaged to a
+   final value.
    Note: This algorithm exploits the characteristics of cryoEM maps
        and may not work on synthetic maps.
 

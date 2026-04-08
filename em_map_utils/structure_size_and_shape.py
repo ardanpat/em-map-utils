@@ -25,6 +25,7 @@ from scipy.special import elliprg
 from .farm_function import FarmFunction
 from .map_covariance import MapCovariance as MC
 from .map_line_projections import MapLineProjections as MLP
+from .map_resample import map_resample
 from .map_threshold import  threshold_map
 
 logger = logging.getLogger(__name__)
@@ -50,6 +51,19 @@ def read_map_list_from(list_file, list_dir=None, file_dir=None):
                 logger.warning(f"Ignoring line. Could not parse map file name from text: {line}")
     return map_list
 
+def max_eccentricity(widths):
+    """
+    Calculate the maximum eccentricity from the longest and smallest
+        principal axes.
+
+    :param widths: 3 widths along the principal axes.
+    :return: Max eccentricity calculated from the longest and shortest
+        axes.
+    """
+    max_width = np.max(widths)
+    min_width = np.min(widths)
+    return np.fabs(1 - min_width / max_width)
+
 def asphericity_coefficient(a, b, c):
     """
     Calculate the asphericity coefficient using three orthogonal width
@@ -74,9 +88,14 @@ def asphericity_coefficient(a, b, c):
     """
     rg = elliprg(1.0 / (a * a), 1.0 / (b * b), 1.0 / (c * c))
     rav = np.pow(a*b*c,1/3)
-    return np.abs(1 - 1 / (rav * rg))
+    return np.fabs(1 - 1 / (rav * rg))
 
-def structure_size_and_shape(entry_file, aligned_file=None, plot_profile=True, csv_file=None, csv_mode="a"):
+def structure_size_and_shape(entry_file,
+                             aligned_file=None,
+                             plot_profile=True,
+                             csv_file=None,
+                             csv_mode="a",
+                             max_map_size=600):
     """
     Determine the size and shape of  a structure.
 
@@ -85,6 +104,9 @@ def structure_size_and_shape(entry_file, aligned_file=None, plot_profile=True, c
     :param plot_profile: Boolean for plotting line projections.
     :param csv_file: Optional name of CSV file to output results to.
     :param csv_mode: Whether to (a)ppend or (w) to CSV file.
+    :param max_map_size: If any dimension of the map is larger than
+        max_map_size, the map is rescaled to make it fit. This option
+        is mainly to reduce the time for processing large maps.
     :return: Tuple with physical widths of structure along the principal
         axes, the cube root of these widths (which represents a sphere
         equivalent average), and the asphericity.
@@ -93,36 +115,48 @@ def structure_size_and_shape(entry_file, aligned_file=None, plot_profile=True, c
     phys_widths = 0.0
     cube_root_width = 0.0
     asph = 0.0
+    eccentricity = 0.0
 
-    with mrcfile.open(entry_file) as mrc:
+    with (mrcfile.open(entry_file) as mrc):
+
+        map_grid = mrc.data
+        voxel_size = mrc.voxel_size.copy()
+        sampling = 1
+
+        # Resample map if needed
+        max_dim_length = max(mrc.data.shape)
+        if max_dim_length > max_map_size:
+            sampling = max_dim_length / max_map_size
+            map_grid = map_resample(mrc.data, sampling)
+            voxel_size.x = voxel_size.x * sampling
+            voxel_size.y = voxel_size.y * sampling
+            voxel_size.z = voxel_size.z * sampling
 
         # Threshold map
-        map_grid, threshold, hist, prof = threshold_map(mrc.data)
+        map_grid, threshold = threshold_map(map_grid)
 
         # Align map's principal axes to those of the box
         aligned_map, rot, cov_info = MC.align_map_principal_axes(map_grid, cubify_if_needed=True)
 
         # Some values may be < 0 due to interpolation artifacts -> zero them
-        aligned_map = np.where(aligned_map >= threshold, aligned_map, 0)
+        aligned_map = np.where(aligned_map >= 0, aligned_map, 0)
 
         # Scaling to Angstrom along eigenvectors
-        scale_vec = cov_info.phys_scale_eigenvectors(mrc)
+        scale_vec = cov_info.phys_scale_eigenvectors(mrc, sampling)
 
         # Get 1D profile lengths
         prof = MLP(aligned_map)
         # Physical widths in descending order
         phys_widths = np.sort(prof.cum_prof_width * scale_vec)[::-1]
         cube_root_width = np.pow(np.prod(phys_widths), 1 / 3)
+        eccentricity = max_eccentricity(phys_widths)
         asph = asphericity_coefficient(prof.cum_prof_width[0], prof.cum_prof_width[1], prof.cum_prof_width[2])
-
-        # print(prof)
-        # print(f"Scaled reciprocal e width: {prof.rec_e_width * scale_vec}")
 
         # Save measurements to CSV file
         if csv_file:
             csv_mode = csv_mode if Path(csv_file).exists() and csv_mode in ("a","w") else "w"
             with open(csv_file,  csv_mode, newline='') as f:
-                fieldnames = ['entry_file', 'width1', 'width2', 'width3', "cube_root_width", "asphericity"]
+                fieldnames = ['entry_file', 'width1', 'width2', 'width3', "cube_root_width", "asphericity", "max_eccentricity"]
                 writer = csv.DictWriter(f, fieldnames=fieldnames)
                 print(f"Writing {csv_mode}")
                 if csv_mode == "w":
@@ -133,7 +167,8 @@ def structure_size_and_shape(entry_file, aligned_file=None, plot_profile=True, c
                                  fieldnames[2]: phys_widths[1],
                                  fieldnames[3]: phys_widths[2],
                                  fieldnames[4]: cube_root_width,
-                                 fieldnames[5]: asph})
+                                 fieldnames[5]: asph,
+                                 fieldnames[6]: eccentricity})
                 f.close()
 
 
@@ -144,13 +179,17 @@ def structure_size_and_shape(entry_file, aligned_file=None, plot_profile=True, c
 
         # Save aligned file to file
         if aligned_file is not None:
-            mrc_out = mrcfile.new(aligned_file, overwrite=True, compression='gzip')
+            if len(aligned_file.name) > 3 and aligned_file.name[-3:] == ".gz":
+                comp = 'gzip'
+            else:
+                comp = None
+            mrc_out = mrcfile.new(aligned_file, overwrite=True, compression=comp)
             mrc_out.set_data(aligned_map)
             mrc_out.header.origin = mrc.header.origin
             mrc_out.header.nxstart = mrc.header.nxstart
             mrc_out.header.nystart = mrc.header.nystart
             mrc_out.header.nzstart = mrc.header.nzstart
-            mrc_out.voxel_size = mrc.voxel_size
+            mrc_out.voxel_size = voxel_size
             if mrc.header.exttyp:
                 mrc_out.set_extended_header(mrc.extended_header)
             mrc_out.close()
@@ -159,7 +198,8 @@ def structure_size_and_shape(entry_file, aligned_file=None, plot_profile=True, c
                    'width_b': phys_widths[1],
                    'width_c': phys_widths[2],
                    'cube_root_width': cube_root_width,
-                   'asphericity': asph }
+                   'asphericity': asph,
+                   'max_eccentricity': eccentricity}
 
 def main():
     mp.set_start_method("spawn")
@@ -180,6 +220,8 @@ def main():
                         help='Number of workers to process maps. Only relevant with -l option.')
     parser.add_argument('-t', '--max_tries', metavar='VAL', type=int, default=2,
                         help='Number of attempts to try and process map. Only relevant with -l option.')
+    parser.add_argument('--max_map_size', metavar='VAL', type=int, default=600,
+                        help='Maps larger than this size will be resampled to fit inside it.')
     parser.add_argument('--monitoring_interval', metavar='VAL', type=int, default=5,
                         help='Interval in seconds between each worker check. Only relevant with -l option.')
     parser.add_argument('--out_stem', metavar='FILE', type=str, default='map_size_and_shape',
@@ -201,10 +243,12 @@ def main():
                                                aligned_file=args.align_file,
                                                plot_profile=args.plot,
                                                csv_file=args.csv,
-                                               csv_mode=args.mode)
+                                               csv_mode=args.mode,
+                                               max_map_size=args.max_map_size)
         print(f"Principal axes widths: {res['width_a']}, {res['width_b']}, {res['width_c']}")
         print(f"Cube root width: {res['cube_root_width']}")
         print(f"Asphericity coefficient: {res['asphericity']}")
+        print(f"Max eccentricity: {res['max_eccentricity']}")
 
     else:
 
@@ -221,7 +265,8 @@ def main():
         ff = FarmFunction(structure_size_and_shape, map_list,
                           kwargs = { 'aligned_file': None,
                                      'plot_profile': False,
-                                     'csv_file': None },
+                                     'csv_file': None,
+                                     'max_map_size': args.max_map_size},
                           num_workers=args.num_workers,
                           max_tries=args.max_tries,
                           monitoring_interval=args.monitoring_interval,

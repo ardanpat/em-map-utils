@@ -35,6 +35,7 @@ Functions
 .. autoapisummary::
 
    em_map_utils.structure_size_and_shape.read_map_list_from
+   em_map_utils.structure_size_and_shape.max_eccentricity
    em_map_utils.structure_size_and_shape.asphericity_coefficient
    em_map_utils.structure_size_and_shape.structure_size_and_shape
    em_map_utils.structure_size_and_shape.main
@@ -48,6 +49,16 @@ Module Contents
 .. py:data:: map_name_pattern
 
 .. py:function:: read_map_list_from(list_file, list_dir=None, file_dir=None)
+
+.. py:function:: max_eccentricity(widths)
+
+   Calculate the maximum eccentricity from the longest and smallest
+       principal axes.
+
+   :param widths: 3 widths along the principal axes.
+   :return: Max eccentricity calculated from the longest and shortest
+       axes.
+
 
 .. py:function:: asphericity_coefficient(a, b, c)
 
@@ -72,7 +83,7 @@ Module Contents
    :return: Asphericity coefficient.
 
 
-.. py:function:: structure_size_and_shape(entry_file, aligned_file=None, plot_profile=True, csv_file=None, csv_mode='a')
+.. py:function:: structure_size_and_shape(entry_file, aligned_file=None, plot_profile=True, csv_file=None, csv_mode='a', max_map_size=600)
 
    Determine the size and shape of  a structure.
 
@@ -81,6 +92,9 @@ Module Contents
    :param plot_profile: Boolean for plotting line projections.
    :param csv_file: Optional name of CSV file to output results to.
    :param csv_mode: Whether to (a)ppend or (w) to CSV file.
+   :param max_map_size: If any dimension of the map is larger than
+       max_map_size, the map is rescaled to make it fit. This option
+       is mainly to reduce the time for processing large maps.
    :return: Tuple with physical widths of structure along the principal
        axes, the cube root of these widths (which represents a sphere
        equivalent average), and the asphericity.

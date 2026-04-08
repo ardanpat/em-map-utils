@@ -18,6 +18,7 @@
    filled_sphere
    map_covariance
    map_line_projections
+   map_resample
    map_rotate
    map_threshold
    structure_size_and_shape

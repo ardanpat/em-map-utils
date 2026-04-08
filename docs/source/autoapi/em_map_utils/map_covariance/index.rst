@@ -128,7 +128,7 @@ Module Contents
 
 
 
-   .. py:method:: phys_scale_eigenvectors(mrc)
+   .. py:method:: phys_scale_eigenvectors(mrc, scaling)
 
       Using the voxel sizes from an MRC file to scale the eigen-
       vectors to Ångstroms. Note although the voxel size in the three
@@ -137,11 +137,12 @@ Module Contents
       has not been tested.
 
       :param mrc: MRC file with voxel sizes.
+      :param scaling: Scaling factor to apply to vectors.
       :return: Vector with scalings for each of the eigenvectors.
 
 
 
-   .. py:method:: lengths_from_eigenvalues(mrc)
+   .. py:method:: lengths_from_eigenvalues(mrc, scaling)
 
       The eigenvalues are related to the extent of the map value
       distribution along the principal axes. This routine attempts
@@ -149,6 +150,7 @@ Module Contents
       using different estimates.
 
       :param mrc: MRC file contain voxel sizes.
+      :param scaling: Scaling factor to apply to vectors.
       :return: Tuple with FWHM, two sigma and sphere diameter lengths.
 
 

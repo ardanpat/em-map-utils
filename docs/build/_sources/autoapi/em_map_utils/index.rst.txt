@@ -32,6 +32,7 @@ Submodules
    /autoapi/em_map_utils/filled_sphere/index
    /autoapi/em_map_utils/map_covariance/index
    /autoapi/em_map_utils/map_line_projections/index
+   /autoapi/em_map_utils/map_resample/index
    /autoapi/em_map_utils/map_rotate/index
    /autoapi/em_map_utils/map_threshold/index
    /autoapi/em_map_utils/structure_size_and_shape/index

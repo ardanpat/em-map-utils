@@ -181,7 +181,7 @@ class MapCovariance:
 
         return rot_map, back_rot_map, rot2
 
-    def phys_scale_eigenvectors(self, mrc):
+    def phys_scale_eigenvectors(self, mrc, scaling):
         """
         Using the voxel sizes from an MRC file to scale the eigen-
         vectors to Ångstroms. Note although the voxel size in the three
@@ -190,6 +190,7 @@ class MapCovariance:
         has not been tested.
 
         :param mrc: MRC file with voxel sizes.
+        :param scaling: Scaling factor to apply to vectors.
         :return: Vector with scalings for each of the eigenvectors.
         """
 
@@ -198,12 +199,12 @@ class MapCovariance:
         vox_ijk = np.array([vox[mrc.header.maps - 1],
                             vox[mrc.header.mapr - 1],
                             vox[mrc.header.mapc - 1]]).reshape((3, 1))
-        svec = np.sqrt(np.sum((self.eigenvectors * vox_ijk) ** 2, axis=0))
+        svec = np.sqrt(np.sum((self.eigenvectors * vox_ijk) ** 2, axis=0)) * scaling
         logger.debug(f"Scaling vector: {svec}")
 
         return svec
 
-    def lengths_from_eigenvalues(self, mrc):
+    def lengths_from_eigenvalues(self, mrc, scaling):
         """
         The eigenvalues are related to the extent of the map value
         distribution along the principal axes. This routine attempts
@@ -211,9 +212,10 @@ class MapCovariance:
         using different estimates.
 
         :param mrc: MRC file contain voxel sizes.
+        :param scaling: Scaling factor to apply to vectors.
         :return: Tuple with FWHM, two sigma and sphere diameter lengths.
         """
-        scale_vec = self.phys_scale_eigenvectors(mrc)
+        scale_vec = self.phys_scale_eigenvectors(mrc, scaling)
         sigma = scale_vec * np.sqrt(self.eigenvalues)
 
         two_sigma = 2 * sigma

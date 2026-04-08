@@ -8,6 +8,7 @@ em\_map\_utils.map\_threshold
 
    .. autosummary::
    
+      count_voxels_matching_criteria
       threshold_map
    
    .. rubric:: Classes

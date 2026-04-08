@@ -10,6 +10,7 @@ em\_map\_utils.structure\_size\_and\_shape
    
       asphericity_coefficient
       main
+      max_eccentricity
       read_map_list_from
       structure_size_and_shape
    

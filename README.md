@@ -8,6 +8,7 @@ Python package for create and manipulating cryoEM maps in EMDB (mrc) map format.
 * Calculate line (1D) projections from a map.
 * Threshold masked and unmasked maps.
 * Rotate maps.
+* Downsample or upsample maps.
 * Use multiprocessing to efficiently download multiple maps from EMDB.
 * Generate synthetic maps containing a cuboid, cylinder or sphere.
 
@@ -19,4 +20,4 @@ OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 in your .zshrc file or equivalent and source it.
 
-## In development - prerelease version!
+
